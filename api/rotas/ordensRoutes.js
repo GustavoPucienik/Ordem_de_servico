@@ -5,6 +5,7 @@ const OrdensController = require("../controllers/ordensController.js");
 const router = express.Router();
 
 router
-  .get("/cadastrarOrdens", OrdensController.cadastrar);
+  .get("/ordens", OrdensController.mostraOrdens)
+  .post("/cadastrarOrdens", OrdensController.cadastrar);
 
 module.exports = router;

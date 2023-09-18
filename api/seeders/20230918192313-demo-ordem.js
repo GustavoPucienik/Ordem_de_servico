@@ -1,0 +1,32 @@
+module.exports = {
+  up: (queryInterface, Sequelize) => queryInterface.bulkInsert("Ordens", [{
+    dataReq: "2023-09-18 09:30:00",
+    descricaoReq: "Maquina parou",
+    tipoServico: "Emergencial",
+    mecanicos: "Rafael/Antonio",
+    inicio: "2023-09-18 10:00:00",
+    termino: "2023-09-18 10:30:00",
+    tempo: "00:30:00",
+    paradaMaquina: "00:00:00",
+    itemDefeituoso: "Maquina",
+    problema: "Parou",
+    solucao: "Solucionado",
+    tecnico: "Rafael",
+  },
+  {
+    dataReq: "2023-09-17 09:30:00",
+    descricaoReq: "Seladora parou",
+    tipoServico: "Emergencial",
+    mecanicos: "Rafael/Antonio",
+    inicio: "2023-09-17 10:00:00",
+    termino: "2023-09-17 10:30:00",
+    tempo: "00:30:00",
+    paradaMaquina: "00:00:00",
+    itemDefeituoso: "Seladora",
+    problema: "Parou",
+    solucao: "Solucionado",
+    tecnico: "Rafael",
+  }], {}),
+
+  down: (queryInterface, Sequelize) => queryInterface.bulkDelete("Ordens", null, {}),
+};

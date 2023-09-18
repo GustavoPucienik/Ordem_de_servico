@@ -1,4 +1,6 @@
 /* eslint-disable class-methods-use-this */
+const database = require("../models");
+
 class UsuarioController {
   static async logar(req, res) {
     try {
