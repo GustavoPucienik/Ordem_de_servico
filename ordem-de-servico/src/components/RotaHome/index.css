@@ -1,0 +1,23 @@
+.imagem-container {
+  width: 100%;
+  overflow: hidden; /* Isso é útil se a imagem tiver proporções diferentes e você quiser cortar o excesso */
+  position: relative;
+}
+
+/* Estilize a classe da imagem para ocupar toda a largura */
+.imagem-largura-total {
+  width: 100%;
+  height: auto; /* Mantém a proporção da imagem original */
+  display: block; /* Faz a imagem se comportar como um elemento de bloco */
+}
+
+.texto-home {
+  position: absolute;
+  top: 50px; /* Ajuste a posição vertical conforme necessário */
+  left: 20px; /* Ajuste a posição horizontal conforme necessário */
+  color: white; /* Cor do texto */
+  font-size: 4vw; /* Tamanho da fonte */
+  font-weight: bold; /* Peso da fonte */
+  background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo com transparência */
+  padding: 10px; /* Espaçamento interno */
+}

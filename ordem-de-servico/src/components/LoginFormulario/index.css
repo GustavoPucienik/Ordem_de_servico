@@ -1,0 +1,58 @@
+.body-login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 90px);
+}
+
+.formulario-login{
+  background-color: #ebe7e7;
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  justify-content: space-between;
+  padding: 10px 10px;
+}
+
+.titulo-login{
+  font-weight: bold;
+  font-size: 36px;
+  margin: 15px 0px 30px;
+}
+
+.dados-login{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 90%;
+}
+
+.dados-login label{
+  font-weight: bold;
+}
+
+.dados-login input{
+  border: none;
+  height: 4vh;
+  padding: 5px;
+}
+.dados-login input:focus{
+ outline: none;
+}
+
+.buttonDeSubmit{
+  background-color: #ba1f1f;
+  width: 50%;
+  height: 6vh;
+  border: none;
+  border-radius: 30px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  align-self: center;
+  margin: 15px;
+  padding: 5px;
+}
