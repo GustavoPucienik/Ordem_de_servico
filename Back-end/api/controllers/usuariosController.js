@@ -11,12 +11,21 @@ class UsuarioController {
     }
   }
 
-  static cadastrar(req, res) {
+  static async cadastrar(req, res) {
+    const novoUsuario = req.body;
     try {
-      const cadastrar = { mensagem: "Pagina de cadastro" };
-      return res.status(200).json(cadastrar);
+      const novoUsuarioCriado = await database.Usuarios.create(novoUsuario);
+      return res.status(201).json(novoUsuarioCriado);
     } catch (error) {
       return res.status(500).json(error.message);
+    }
+  }
+
+  static deletarUsuario(req, res) {
+    try {
+      //
+    } catch (error) {
+      //
     }
   }
 }

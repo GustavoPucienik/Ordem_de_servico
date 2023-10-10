@@ -6,6 +6,9 @@ const router = express.Router();
 
 router
   .get("/ordens", OrdensController.mostraOrdens)
-  .post("/cadastrarOrdens", OrdensController.cadastrar);
+  .get("/ordens/:id", OrdensController.pegaOrdem)
+  .post("/ordens/criar", OrdensController.criaOrdem)
+  .put("/ordens/:id", OrdensController.atualizaOrdem)
+  .delete("/ordens/:id", OrdensController.deletaOrdem);
 
 module.exports = router;

@@ -7,6 +7,7 @@ const router = express.Router();
 
 router
   .get("/login", UsuarioController.logar)
-  .get("/cadastrar", UsuarioController.cadastrar);
+  .post("/cadastrar", UsuarioController.cadastrar)
+  .delete("", UsuarioController.deletarUsuario);
 
 module.exports = router;

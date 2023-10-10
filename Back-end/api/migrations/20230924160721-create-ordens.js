@@ -6,13 +6,16 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    dataReq: {
+    data_req: {
       type: Sequelize.DATE,
     },
-    descricaoReq: {
+    descricao_req: {
       type: Sequelize.STRING,
     },
-    tipoServico: {
+    linha: {
+      type: Sequelize.STRING,
+    },
+    tipo_servico: {
       type: Sequelize.STRING,
     },
     mecanicos: {
@@ -27,10 +30,10 @@ module.exports = {
     tempo: {
       type: Sequelize.TIME,
     },
-    paradaMaquina: {
+    parada_maquina: {
       type: Sequelize.TIME,
     },
-    itemDefeituoso: {
+    item_defeito: {
       type: Sequelize.STRING,
     },
     problema: {
@@ -39,7 +42,7 @@ module.exports = {
     solucao: {
       type: Sequelize.STRING,
     },
-    tecnico: {
+    usu_update_req: {
       type: Sequelize.STRING,
     },
     createdAt: {
