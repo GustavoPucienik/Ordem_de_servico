@@ -1,0 +1,57 @@
+.body-ordens-req{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+.ordens-req{
+  width: 80vw;
+  height: auto;
+  padding: 15px;
+  background-color: #ebe7e7;
+
+}
+.ordens-req h1{
+  margin-left: 5%;
+}
+
+.ordens-requisitadas{
+  margin-top: 15px;
+  list-style: none;
+}
+
+.requisicao-aberta{
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.requisicao-ordem{
+  font-weight: 700;
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #b2b0b0;
+  padding: 5px;
+  min-height: 30px;
+}
+
+.requisicao-ordem-descricao{
+  width: 95%;
+  min-height: 50px;
+  background-color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.botoes-ordens button{
+  font-weight: 700;
+  padding: 7px 17px;
+  background-color: #ec3030;
+  margin: 5px 5px;
+  border: none;
+  cursor: pointer;
+}

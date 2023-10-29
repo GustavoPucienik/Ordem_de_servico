@@ -1,27 +1,27 @@
 import './App.css';
-//import axios from "axios";
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/RotaHome';
 import Cadastro from './components/RotaCadastro';
 import Login from './components/RotaLogin';
-
-/* const instance = axios.create({
-  baseURL: 'https://localhost:8000',
-  headers: {
-    "content-Type": "application/json"
-  }
-}) */
+import Perfil from './components/RotaPerfil';
+import CriarOrdem from './components/RotaCriarOrdem';
+import RotaOrdens from './components/RotaOrdens';
 
 function App() {
+
   return (
     <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/login" element={<Login />}/>
-            <Route path="/cadastrar" element={<Cadastro />}/>
-          </Routes>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cadastrar" element={<Cadastro />} />
+          <Route path="/perfil" element={<Perfil />} />
+          <Route path="/criarOrdem" element={<CriarOrdem/>}/>
+          <Route path="/ordens" element={<RotaOrdens/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

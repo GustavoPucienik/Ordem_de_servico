@@ -6,8 +6,10 @@ const UsuarioController = require("../controllers/usuariosController.js");
 const router = express.Router();
 
 router
-  .get("/login", UsuarioController.logar)
+  .post("/login", UsuarioController.logar)
   .post("/cadastrar", UsuarioController.cadastrar)
-  .delete("", UsuarioController.deletarUsuario);
+  .get("/dadosusuario", UsuarioController.pegaDadosUsuario)
+  .put("/dadosusuario", UsuarioController.atualizarUsuario)
+  .delete("/usuario/:id", UsuarioController.deletarUsuario);
 
 module.exports = router;

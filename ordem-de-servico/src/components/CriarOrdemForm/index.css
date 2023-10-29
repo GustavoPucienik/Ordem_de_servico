@@ -1,0 +1,64 @@
+.body-criar-ordem{
+  background-color: #ebe7e7;
+  width: 50vw;
+  margin: auto;
+  margin-top: 5vh;
+  text-align: center;
+  padding: 15px;
+}
+
+.form-cria-ordem{
+  padding: 15px;
+}
+
+.form-cria-ordem p{
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.input-criarOrdem{
+  outline: none;
+  cursor: default;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #ebe7e7;
+}
+
+.select-criaOrdem{
+  margin-top: 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  outline: none;
+  padding: 5px;
+} 
+
+.descricao-req{
+  outline: none;
+  margin-top: 15px;
+  width: 90%;
+  height: 12vh;
+  vertical-align: top;
+  padding: 15px;
+  resize: none;
+}
+
+.descricao-req::placeholder{
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ButtonCriarOrdem{
+  font-weight: bolder;
+  font-size: 16px;
+  margin-top: 3vh;
+  padding: 6px 15px;
+  background-color: #f03d3d;
+  color: #1d1c1c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

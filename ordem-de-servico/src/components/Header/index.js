@@ -1,8 +1,11 @@
 import "./index.css";
-import Logo from "../Logo"
+import Logo from "../Logo";
 import ButtonLogin from "../ButtonLogin";
 import ButtonCadastro from "../ButtonCadastro";
 import ButtonVoltar from "../ButtonVoltar";
+import ButtonLogout from "../ButtonLogout";
+import ButtonCriaOrdem from "../ButtonCriaOrdem";
+import ButtonDashboard from "../ButtonDashboard";
 
 const Header = (rota) => {
   return (
@@ -25,6 +28,24 @@ const Header = (rota) => {
         <div>
           <ButtonLogin/>
           <ButtonVoltar/>
+        </div>
+        : null}
+        {rota.nome === "perfil"?
+        <div>
+          <ButtonCriaOrdem/>
+          <ButtonLogout/>
+        </div>
+        : null}
+        {rota.nome === "criarOrdem"?
+        <div>
+          <ButtonDashboard/>
+          <ButtonLogout/>
+        </div>
+        : null}
+        {rota.nome === "ordens-req"?
+        <div>
+          <ButtonDashboard/>
+          <ButtonLogout/>
         </div>
         : null}
       

@@ -1,28 +1,16 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { API_BASE_URL } from '../../config';
 
-const baseURL = "http://localhost:8000/cadastrar";
+const baseURL = `${API_BASE_URL}/cadastrar`;
 
-/* function criarUsuario() {
-  axios
-    .post(baseURL, {
-      nome: "Gustavo",
-      senha: "senha123",
-      setor: "Manutenção",
-      tipo: "Programador"
-    })
-    .catch((erro) => {
-      alert("Erro ao criar usuário:", erro);
-    });
-}
- */
 
 const CadastroForm = () => {
   const [formData, setFormData] = useState({
     nome: "",
-    senha: "",
     setor: "",
-    tipo: "",
+    email: "",
+    senha: "",
   });
 
   
@@ -44,12 +32,12 @@ const CadastroForm = () => {
     }
 
     try {
-      const response = await axios.post(baseURL, formData);
+      const response = await axios.post(baseURL, formData, { headers: { "Content-Type": "application/json" }});
       console.log("Resposta do servidor:", response.data);
       alert(`Usuario ${formData.nome} cadastrado com sucesso!`);
       window.location = "/login";
     } catch (error) {
-      console.error("Erro ao enviar dados:", error);
+      alert("Erro ao enviar dados:", error);
     }
   };
   return (
@@ -69,6 +57,15 @@ const CadastroForm = () => {
           type="text"
           name="setor"
           placeholder='Coloque seu setor'
+          onChange={handleChange}
+          required
+        /><br />
+        
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          placeholder='Coloque seu email de usuario'
           onChange={handleChange}
           required
         /><br />

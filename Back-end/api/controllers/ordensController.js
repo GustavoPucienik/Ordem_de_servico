@@ -12,9 +12,13 @@ class OrdensController {
     }
   }
 
-  static async mostraOrdens(req, res) {
+  static async mostraRequisicoes(req, res) {
     try {
-      const todasAsOrdens = await database.Ordens.findAll();
+      const todasAsOrdens = await database.Ordens.findAll({
+        where: {
+          solucao: null,
+        },
+      });
       return res.status(200).json(todasAsOrdens);
     } catch (error) {
       return res.status(500).json(error.message);

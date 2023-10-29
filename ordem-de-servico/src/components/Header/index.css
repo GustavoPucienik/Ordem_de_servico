@@ -1,6 +1,6 @@
 .Header{
   width: auto;
-  height: 90px;
+  height: 15vh;
   background-color: black;
   display: flex;
   justify-content: space-between;
