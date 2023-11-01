@@ -1,0 +1,68 @@
+.bodyDashboard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 90px);
+  margin-top: -10vh;
+} 
+
+.dashboard{
+  background-color: #ebe7e7;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 40vw;
+  border-radius: 15px;
+}
+.dashboard h1{
+  margin-top: -5%;
+}
+
+.dadosDashboard{
+  margin-top: 10px;
+  display: flex;
+  padding: 5px;
+}
+
+.coluna0, .coluna1{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+label{
+  margin: 5px 0;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.inputPerfil{
+  padding: 2px;
+  outline: none;
+}
+
+.buttonsPerfil{
+  margin-top: 1%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.botaoAlterar{
+  font-weight: bolder;
+  font-size: 16px;
+  padding: 6px;
+  align-self: flex-end;
+  background-color: #f03d3d;
+  color: #1d1c1c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.botaoAlterar:disabled{
+  background-color: #555;
+}

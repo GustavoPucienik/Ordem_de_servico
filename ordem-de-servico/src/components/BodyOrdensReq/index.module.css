@@ -1,0 +1,76 @@
+.bodyOrdensReq{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.ordensReq{
+  width: 80vw;
+  height: auto;
+  padding: 15px;
+  border-radius: 30px;
+  background-color: #ebe7e7;
+  margin-bottom: 15px;
+}
+
+.ordensReq h1{
+  margin-left: 5%;
+}
+
+.ordensRequisitadas{
+  margin-top: 15px;
+  list-style: none;
+}
+
+.requisicoesAberta{
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.requisicoesOrdem{
+  background-color: #eb5c5c;
+  font-size: 20px;
+  font-weight: 600;
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  min-height: 40px;
+}
+
+.requisicaoOrdemDescricao{
+  word-wrap: break-word;
+  font-weight: 600;
+  font-weight: normal;
+  width: 95%;
+  min-height: 50px;
+  background-color: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.botoesOrdensReq button{
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 4px 25px;
+  background-color: #fa3232;
+  color: #000;
+  margin: 10px 10px 0px;
+  border: none;
+  cursor: pointer;
+}
+
+.botoesOrdensReq :nth-child(2){
+  background-color: #6d6969;
+}
+
+.botoesOrdensReq button:hover{
+  transition: .2s;
+  background-color:  #6d6969;
+  color: #fff;
+}
