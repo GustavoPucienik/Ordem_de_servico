@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./index.css"
+import styles from "./index.module.css";
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
 
@@ -65,14 +65,14 @@ const CriarOrdemForm = () => {
   };
 
   return (
-    <div className='body-criar-ordem'>
+    <div className={styles.bodyCriarOrdem}>
       <h1>Crie uma ordem de serviço</h1>
-      <form className="form-cria-ordem" onSubmit={handleSubmit}>
-      <input className="input-criarOrdem" name="usuario_req" readOnly value={formData.usuario_req}
+      <form className={styles.formCriaOrdem} onSubmit={handleSubmit}>
+      <input className={styles.inputCriarOrdem} name="usuario_req" readOnly value={formData.usuario_req}
       onChange={handleChange}/><br/>
-      <input className="input-criarOrdem" name="setor" readOnly value={formData.setor}
+      <input className={styles.inputCriarOrdem} name="setor" readOnly value={formData.setor}
       onChange={handleChange}/><br/>
-        <select name="linha" className="select-criaOrdem" onChange={handleChange}>
+        <select name="linha" className={styles.selectCriaOrdem} onChange={handleChange}>
           <option selected value="">Selecione a linha</option>
           <option value="Blistagem">Blistagem</option>
           <option value="Arla">Arla</option>
@@ -98,9 +98,9 @@ const CriarOrdemForm = () => {
           <option value="Dosagem selante">Dosagem selante</option>
           <option value="Dosagem graxa">Dosagem graxa</option>
         </select><br />
-        <textarea className='descricao-req' type="text" name="descricao_req" onChange={handleChange}
+        <textarea className={styles.descricaoReq} type="text" name="descricao_req" onChange={handleChange}
         placeholder="Descreva o problema aqui..." />
-        <button className="ButtonCriarOrdem" type="submit">Enviar</button>
+        <button className={styles.ButtonCriarOrdem} type="submit">Enviar</button>
       </form>
     </div>
   )

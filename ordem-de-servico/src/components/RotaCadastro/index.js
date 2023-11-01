@@ -1,5 +1,5 @@
 import React from 'react';
-import "./index.css";
+import styles from "./index.module.css";
 import Header from '../Header';
 import CadastroForm from '../CadastroFormulario';
 
@@ -8,9 +8,9 @@ const Cadastro = () => {
   return (
     <>
       <Header nome="cadastrar"/>
-      <div className='body-cadastro'>
-        <div className='formulario-cadastro'>
-          <h1 className='titulo-cadastro'>Cadastro</h1>
+      <div className={styles.bodyCadastro}>
+        <div className={styles.formularioCadastro}>
+          <h1 className={styles.tituloCadastro}>Cadastro</h1>
           <CadastroForm/>
         </div>
       </div>

@@ -1,12 +1,11 @@
-import React from 'react'
-
+import styles from "../Header/index.module.css"
 function vaiprateladeCadastro(){
   window.location = "/cadastrar";
 }
 
 const Button = () => {
   return (
-    <button className='button-header' onClick={vaiprateladeCadastro}>Cadastro</button>
+    <button className={styles.buttonHeader} onClick={vaiprateladeCadastro}>Cadastro</button>
   )
 }
 

@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import styles from "../Header/index.module.css";
+
 
 function deslogar(){
   localStorage.removeItem('token');
@@ -8,7 +10,7 @@ function deslogar(){
 
 const Button = () => {
   return (
-    <button className='button-header' onClick={deslogar}>Logout</button>
+    <button className={styles.buttonHeader} onClick={deslogar}>Logout</button>
   )
 }
 

@@ -1,4 +1,4 @@
-import "./index.css"
+import styles from "./index.module.css";
 import Banner from "../../img/banner.jpg"
 import Header from '../Header';
 
@@ -6,9 +6,9 @@ const Home = () => {
   return (
     <>
     <Header nome="home"/>
-    <div className="imagem-container">
-      <img className="imagem-largura-total" src={Banner} alt="foto da apwinner" />
-      <h1 className="texto-home"> Sistema de ordens de serviço manutenção</h1>
+    <div className={styles.imagemContainer}>
+      <img className={styles.imagemLarguraTotal} src={Banner} alt="foto da apwinner" />
+      <h1 className={styles.textoHome}> Sistema de ordens de serviço manutenção</h1>
     </div>
     </>
   )

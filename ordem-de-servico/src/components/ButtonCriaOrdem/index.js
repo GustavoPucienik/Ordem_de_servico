@@ -1,13 +1,8 @@
-import React from 'react'
-
-function vaiprateladeCriarOrdem(){
-  window.location = "/criarOrdem";
-}
-
+import styles from "../Header/index.module.css"
 
 const Button = () => {
   return (
-    <button className='button-header' onClick={vaiprateladeCriarOrdem}>Criar ordem</button>
+    <button className={styles.buttonHeader} onClick={() => window.location = "/criarOrdem"}>Criar ordem</button>
   )
 }
 

@@ -1,4 +1,4 @@
-import "./index.css";
+import styles from "./index.module.css";
 import Logo from "../Logo";
 import ButtonLogin from "../ButtonLogin";
 import ButtonCadastro from "../ButtonCadastro";
@@ -6,11 +6,12 @@ import ButtonVoltar from "../ButtonVoltar";
 import ButtonLogout from "../ButtonLogout";
 import ButtonCriaOrdem from "../ButtonCriaOrdem";
 import ButtonDashboard from "../ButtonDashboard";
+import ButtonVoltarOrdens from "../ButtonVoltarOrdens";
 
 const Header = (rota) => {
   return (
   <>
-    <div className="Header">
+    <div className={styles.hheader}>
       <Logo/>
         {rota.nome === "home"?
         <div>
@@ -45,6 +46,13 @@ const Header = (rota) => {
         {rota.nome === "ordens-req"?
         <div>
           <ButtonDashboard/>
+          <ButtonLogout/>
+        </div>
+        : null}
+        
+        {rota.nome === "ordem-req"?
+        <div>
+          <ButtonVoltarOrdens/>
           <ButtonLogout/>
         </div>
         : null}

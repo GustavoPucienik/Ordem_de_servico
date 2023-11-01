@@ -1,13 +1,8 @@
-import React from 'react'
-
-function vaipraRotaPerfil(){
-  window.location = "/perfil";
-}
-
+import styles from "../Header/index.module.css";
 
 const Button = () => {
   return (
-    <button className='button-header' onClick={vaipraRotaPerfil}>Voltar</button>
+    <button className={styles.buttonHeader} onClick={() => window.location = "/perfil" }>Voltar</button>
   )
 }
 

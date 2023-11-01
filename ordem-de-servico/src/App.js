@@ -7,6 +7,7 @@ import Login from './components/RotaLogin';
 import Perfil from './components/RotaPerfil';
 import CriarOrdem from './components/RotaCriarOrdem';
 import RotaOrdens from './components/RotaOrdens';
+import OrdemRequisitada from './components/OrdemRequisitada'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/criarOrdem" element={<CriarOrdem/>}/>
           <Route path="/ordens" element={<RotaOrdens/>}/>
+          <Route path="/ordemrequisitada/:id" element={<OrdemRequisitada/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./index.css";
+import styles from "./index.module.css";
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
 
@@ -12,24 +12,24 @@ const BodyOrdensReq = () => {
     axios.get(URLPegaRequisicoes, {
     })
     .then( function (response){
-      setDados(response.data)
+      setDados(response.data);
     })
-  })
+  },[])
   return (
-    <div className='body-ordens-req'>
-      <div className='ordens-req'>
+    <div className={styles.bodyOrdensReq}>
+      <div className={styles.ordensReq}>
         <h1>Requisições</h1>
-        <ul className='ordens-requisitadas'>
+        <ul className={styles.ordensRequisitadas}>
           {dados.map((requisicao, index) => (
-            <li  className='requisicao-aberta' key={index}>
-              <div className='requisicao-ordem'>
+            <li  className={styles.requisicoesAberta} key={index}>
+              <div className={styles.requisicoesOrdem}>
                 <p>{requisicao.usuario_req}</p> 
                 {requisicao.setor? <p>Setor: {requisicao.setor}</p> :""}
                 {requisicao.linha? <p>Linha: {requisicao.linha}</p> :""}
               </div>
-              <p className='requisicao-ordem-descricao'>{requisicao.descricao_req}</p>
-              <div className='botoes-ordens'>
-              <button>Resolver</button>
+              <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
+              <div className={styles.botoesOrdensReq}>
+              <button onClick={() => window.location = `/ordemrequisitada/${requisicao.id}`}>Resolver</button>
               <button>Excluir</button>
               </div>
             </li>

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import "./index.css";
+import styles from "./index.module.css";
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
 
@@ -42,7 +42,7 @@ const handleSubmit = async (e) => {
 
   return (
     <>
-      <form className='dados-login' onSubmit={handleSubmit}>
+      <form className={styles.dadosLogin} onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
         <input
           type="email"
@@ -63,7 +63,7 @@ const handleSubmit = async (e) => {
           required
         /><br />
 
-        <button className='buttonDeSubmit' type="submit">Login</button>
+        <button className={styles.buttonDeSubmit} type="submit">Login</button>
       </form>
     </>
   )

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from "../RotaCadastro/index.module.css";
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
 
@@ -42,7 +43,7 @@ const CadastroForm = () => {
   };
   return (
     <>
-      <form className='dados-cadastro' onSubmit={handleSubmit}>
+      <form className={styles.dadosCadastro} onSubmit={handleSubmit}>
         <label htmlFor="nome">Nome:</label>
         <input
           type="text"
@@ -88,7 +89,7 @@ const CadastroForm = () => {
           required
         /><br />
 
-        <button className='buttonDeSubmit' type="submit">Cadastrar</button>
+        <button className={styles.buttonDeSubmit} type="submit">Cadastrar</button>
       </form>
     </>
   )

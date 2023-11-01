@@ -1,4 +1,4 @@
-import "./index.css";
+import styles from "./index.module.css";
 import React, { useEffect, useState } from 'react';
 import Header from '../Header';
 import axios from "axios";
@@ -63,11 +63,11 @@ const Dashboard = () => {
   return (
     <>
       <Header nome="perfil" />
-      <div className="body-dashboard">
-        <form className="dashboard" onSubmit={handleSubmit}>
+      <div className={styles.bodyDashboard}>
+        <form className={styles.dashboard} onSubmit={handleSubmit}>
           <h1>Altere seus dados</h1>
-          <div className="dados-dashboard">
-            <div className="coluna0">
+          <div className={styles.dadosDashboard}>
+            <div className={styles.coluna0}>
               <label >Nome:</label>
               <p>{dados && dados.nome}</p>
               <label >Setor:</label>
@@ -75,16 +75,16 @@ const Dashboard = () => {
               <label >Email:</label>
               <p>{dados && dados.email}</p>
             </div>
-            <div className="coluna1">
+            <div className={styles.coluna1}>
               <label htmlFor="nome">Nome:</label>
-              <input className="input-perfil" type="text" name="nome" placeholder="Altere seu nome" onChange={(e) => setNome(e.target.value)} />
+              <input className={styles.inputPerfil} type="text" name="nome" placeholder="Altere seu nome" onChange={(e) => setNome(e.target.value)} />
               <label htmlFor="setor">Setor:</label>
-              <input className="input-perfil" type="text" name="setor" placeholder="Altere seu setor" onChange={(e) => setSetor(e.target.value)} />
+              <input className={styles.inputPerfil} type="text" name="setor" placeholder="Altere seu setor" onChange={(e) => setSetor(e.target.value)} />
             </div>
           </div>
-          <div className="buttons-perfil">
-          <button className="botao-fecha-ordem" onClick={() => {window.location = "/ordens"}} disabled={buttonDisabled} type="button">Fechar ordens</button>
-          <button className="botao-alterar" type="submit">Alterar dados</button>
+          <div className={styles.buttonsPerfil}>
+          <button className={styles.botaoAlterar} onClick={() => {window.location = "/ordens"}} disabled={buttonDisabled} type="button">Fechar ordens</button>
+          <button className={styles.botaoAlterar} type="submit">Alterar dados</button>
           </div>
         </form>
       </div>

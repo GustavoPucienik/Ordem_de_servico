@@ -1,11 +1,11 @@
 import LogoWinner from "../../img/Logo.jpeg";
-import "./index.css"
+import styles from "./index.module.css";
 
 const Logo = () => {
   return (
     <>
     <div>
-      <img className="img-logo" src={LogoWinner} alt="Logo da empresa apwinner" />
+      <img className={styles.imgLogo} src={LogoWinner} alt="Logo da empresa apwinner" />
     </div>
   </>
   )

@@ -1,4 +1,4 @@
-import React from 'react'
+import styles from "../Header/index.module.css"
 
 function vaipratelaHome(){
   window.location = "/";
@@ -7,7 +7,7 @@ function vaipratelaHome(){
 
 const Button = () => {
   return (
-    <button className='button-header' onClick={vaipratelaHome}>Voltar</button>
+    <button className={styles.buttonHeader} onClick={vaipratelaHome}>Voltar</button>
   )
 }
 
