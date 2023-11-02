@@ -2,10 +2,6 @@ module.exports = (sequelize, DataTypes) => {
   const Ordens = sequelize.define("Ordens", {
     usuario_req: DataTypes.STRING,
     setor: DataTypes.STRING,
-    data_req: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW, // Isso define a data atual automaticamente
-    },
     descricao_req: DataTypes.STRING,
     linha: DataTypes.STRING,
     tipo_servico: DataTypes.STRING,
@@ -17,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     item_defeito: DataTypes.STRING,
     problema: DataTypes.STRING,
     solucao: DataTypes.STRING,
-    mecanicoQresolveu: DataTypes.STRING,
+    concluida: DataTypes.BOOLEAN,
   }, {});
   Ordens.associate = function (models) {
     // associations can be defined here

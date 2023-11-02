@@ -5,8 +5,9 @@ const OrdensController = require("../controllers/ordensController.js");
 const router = express.Router();
 
 router
-  .get("/requisicoes", OrdensController.mostraRequisicoes)
+  .get("/ordens", OrdensController.mostraRequisicoes)
   .get("/ordens/:id", OrdensController.pegaOrdem)
+  .get("/ordensconcluidas", OrdensController.mostraOrdensConcluidas)
   .post("/criarOrdem", OrdensController.criaOrdem)
   .put("/ordens/:id", OrdensController.atualizaOrdem)
   .delete("/ordens/:id", OrdensController.deletaOrdem);

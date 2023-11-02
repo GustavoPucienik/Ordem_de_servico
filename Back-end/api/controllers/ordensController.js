@@ -16,7 +16,20 @@ class OrdensController {
     try {
       const todasAsOrdens = await database.Ordens.findAll({
         where: {
-          solucao: null,
+          concluida: null,
+        },
+      });
+      return res.status(200).json(todasAsOrdens);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+
+  static async mostraOrdensConcluidas(req, res) {
+    try {
+      const todasAsOrdens = await database.Ordens.findAll({
+        where: {
+          concluida: true,
         },
       });
       return res.status(200).json(todasAsOrdens);
