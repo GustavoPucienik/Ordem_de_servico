@@ -99,7 +99,7 @@ const CriarOrdemForm = () => {
           <option value="Dosagem graxa">Dosagem graxa</option>
         </select><br />
         <textarea className={styles.descricaoReq} type="text" name="descricao_req" onChange={handleChange}
-        placeholder="Descreva o problema aqui..." />
+        placeholder="Descreva o problema aqui..." maxLength={255} />
         <button className={styles.ButtonCriarOrdem} type="submit">Enviar</button>
       </form>
     </div>
