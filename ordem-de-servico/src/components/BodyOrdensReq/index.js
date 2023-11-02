@@ -3,17 +3,29 @@ import styles from "./index.module.css";
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
 
-const URLPegaRequisicoes = `${API_BASE_URL}/requisicoes`;
+const URLPegaRequisicoes = `${API_BASE_URL}/ordens`;
+const URLDeletaReq = `${API_BASE_URL}/ordens/`
 
 const BodyOrdensReq = () => {
   const [dados, setDados] = useState([]);
+  const deletarOrdem = (id) => {
+    axios.delete(`${URLDeletaReq}${id}`)
+    .then(() => {
+      // Atualizar o estado para refletir a exclusão
+      setDados((prevData) => prevData.filter((item) => item.id !== id));
+    })
+    .catch((error) => {
+      console.error("Erro ao excluir ordem:", error);
+    });
+    
+  }
 
   useEffect(()=> {
     axios.get(URLPegaRequisicoes, {
     })
     .then( function (response){
       setDados(response.data);
-    })
+    });
   },[])
   return (
     <div className={styles.bodyOrdensReq}>
@@ -30,7 +42,7 @@ const BodyOrdensReq = () => {
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
               <button onClick={() => window.location = `/ordemrequisitada/${requisicao.id}`}>Resolver</button>
-              <button>Excluir</button>
+              <button onClick={() => {deletarOrdem(requisicao.id)}}>Excluir</button>
               </div>
             </li>
           ))}
