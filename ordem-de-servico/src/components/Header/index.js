@@ -7,6 +7,7 @@ import ButtonLogout from "../ButtonLogout";
 import ButtonCriaOrdem from "../ButtonCriaOrdem";
 import ButtonDashboard from "../ButtonDashboard";
 import ButtonVoltarOrdens from "../ButtonVoltarOrdens";
+import ButtonOrdensConcluidas from "../ButtonOrdensConcluidas";
 
 const Header = (rota) => {
   return (
@@ -45,12 +46,19 @@ const Header = (rota) => {
         : null}
         {rota.nome === "ordens-req"?
         <div>
+          <ButtonOrdensConcluidas/>
           <ButtonDashboard/>
           <ButtonLogout/>
         </div>
         : null}
         
         {rota.nome === "ordem-req"?
+        <div>
+          <ButtonVoltarOrdens/>
+          <ButtonLogout/>
+        </div>
+        : null}
+        {rota.nome === "ordens-concluidas"?
         <div>
           <ButtonVoltarOrdens/>
           <ButtonLogout/>
