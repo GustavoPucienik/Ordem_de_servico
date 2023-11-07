@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable class-methods-use-this */
+const { Op } = require("sequelize");
 const database = require("../models");
 
 class OrdensController {
@@ -31,10 +33,49 @@ class OrdensController {
         where: {
           concluida: true,
         },
+        order: [["updatedAt", "DESC"]], // Ordena por data de atualização em ordem decrescente
+        limit: 10,
       });
       return res.status(200).json(todasAsOrdens);
     } catch (error) {
       return res.status(500).json(error.message);
+    }
+  }
+
+  static async filtrarOrdensConcluidas(req, res) {
+    const { filtroName, filtroSetor, filtroLinha } = req.query;
+
+    try {
+      // Usei o operador Sequelize 'like' para filtrar
+      const ordensFiltradas = await database.Ordens.findAll({
+        where: {
+          concluida: true,
+          [Op.and]: [
+            {
+              usuario_req: {
+                [Op.like]: `%${filtroName}%`,
+              },
+            },
+            {
+              setor: {
+                [Op.like]: `%${filtroSetor}%`,
+              },
+            },
+            {
+              linha: {
+                [Op.like]: `%${filtroLinha}%`,
+              },
+            },
+            // Adicionei outras colunas aqui, se necessário
+          ],
+        },
+        order: [["updatedAt", "DESC"]],
+      });
+
+      res.json(ordensFiltradas);
+    } catch (error) {
+      console.error("Erro ao buscar ordens:", error);
+      res.status(500).json({ error: "Erro ao buscar ordens" });
     }
   }
 
@@ -52,6 +93,7 @@ class OrdensController {
     const { id } = req.params;
     const novasInfos = req.body;
     try {
+      novasInfos.updatedAt = new Date();
       await database.Ordens.update(novasInfos, { where: { id: Number(id) } });
       const ordemAtualizada = await database.Ordens.findOne({ where: { id: Number(id) } });
       return res.status(200).json(ordemAtualizada);
