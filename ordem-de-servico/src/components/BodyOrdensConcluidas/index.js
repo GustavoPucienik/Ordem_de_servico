@@ -7,7 +7,6 @@ import * as XLSX from "xlsx";
 const URLPegaRequisicoes = `${API_BASE_URL}/ordensconcluidas`;
 const URLDeletaReq = `${API_BASE_URL}/ordens/`;
 const URLFiltradas = `${API_BASE_URL}/filtrarordensconcluidas`;
-const URLBaixarxls = `${API_BASE_URL}/download-xls`
 
 const BodyOrdensConcluidas = () => {
   const [dados, setDados] = useState([]);
@@ -15,6 +14,8 @@ const BodyOrdensConcluidas = () => {
   const [filtroName, setFiltroName] = useState("");
   const [filtroSetor, setFiltroSetor] = useState("");
   const [filtroLinha, setFiltroLinha] = useState("");
+  const [filtroDataInicio, setFiltroDataInicio] = useState("");
+  const [filtroDataFim, setFiltroDataFim] = useState("");
 
   const deletarOrdem = (id) => {
     axios.delete(`${URLDeletaReq}${id}`)
@@ -39,8 +40,10 @@ const BodyOrdensConcluidas = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(filtroDataInicio)
+    console.log(filtroDataFim)
       try {
-        const response = await axios.get(`${URLFiltradas}?filtroName=${filtroName}&filtroSetor=${filtroSetor}&filtroLinha=${filtroLinha}`);
+        const response = await axios.get(`${URLFiltradas}?filtroName=${filtroName}&filtroSetor=${filtroSetor}&filtroLinha=${filtroLinha}&filtroDataInicio=${filtroDataInicio}&filtroDataFim=${filtroDataFim}`);
         setOrdensFiltradas(response.data);
       } catch (error) {
         console.error("Erro ao buscar ordens:", error);
@@ -59,8 +62,13 @@ const BodyOrdensConcluidas = () => {
     
     wb.SheetNames.push('Ordens Apwinner');
     
-    const header = ["nome", "setor", "linha"];
-    const data = [header, ...ordensFiltradas.map(requisicao => [requisicao.usuario_req, requisicao.setor, requisicao.linha])];
+    const header = ["nome", "setor", "linha", "descrição do usuario", "Tipo de serviço", "Técnicos", 
+    `inicio`, `termino`, `tempo`, `parada de máquina`, `item_defeito`, `problema`, `solucao`, 
+    `concluida`];
+    const data = [header, ...ordensFiltradas.map(requisicao => [requisicao.usuario_req, requisicao.setor,
+      requisicao.linha, requisicao.descricao_req, requisicao.tipo_servico, requisicao.mecanicos,
+      requisicao.inicio, requisicao.termino, requisicao.tempo, requisicao.parada_maquina,
+      requisicao.item_defeito, requisicao.problema, requisicao.solucao, requisicao.concluida])];
     
     const ws = XLSX.utils.aoa_to_sheet(data);
     
@@ -72,9 +80,9 @@ const BodyOrdensConcluidas = () => {
   return (
     <div className={styles.bodyOrdensReq}>
       <div className={styles.ordensReq}>
-        <h1>Ordens concluídas</h1>
+        <h1>Filtrar ordens Concluidas</h1>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js" integrity="sha512-jDEmOIskGs/j5S3wBWQAL4pOYy3S5a0y3Vav7BgXHnCVcUBXkf1OqzYS6njmDiKyqes22QEX8GSIZZ5pGk+9nA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <form onSubmit={handleSubmit} >
+        <form className={styles.filtroForm} onSubmit={handleSubmit} >
           {/* Campo de filtro por nome de usuário */}
           <input
             type="text"
@@ -96,18 +104,25 @@ const BodyOrdensConcluidas = () => {
             value={filtroLinha}
             onChange={(e) => setFiltroLinha(e.target.value)}
           />
+          <input type="date" value={filtroDataInicio} onChange={(e) => setFiltroDataInicio(e.target.value)}/>
+          <input type="date" value={filtroDataFim} onChange={(e) => setFiltroDataFim(e.target.value)}/>
           <button type="submit">Filtrar</button>
-          {ordensFiltradas !== null?<button type="button" onClick={downloadXLSX}>Baixar filtradas em xlsx</button>:""}
+          {ordensFiltradas?<button type="button" onClick={downloadXLSX}>Baixar filtradas em xlsx</button>:""}
         </form>
-
+        
         <ul className={styles.ordensRequisitadas}>
-          {ordensFiltradas ? 
-            ordensFiltradas.map((requisicao, index) => (
-            <li className={styles.requisicoesAberta} key={index}>
+          {ordensFiltradas ? <h1>Ordens Filtradas</h1> : ""}
+          {ordensFiltradas ?
+            ordensFiltradas.map((requisicao, index) => {
+              // Formatando o campo createdAt
+              const novoCreatedAt = new Date(requisicao.createdAt).toLocaleString('pt-BR');
+            return (
+            <li className={styles.requisicaoC} key={index}>
               <div className={styles.requisicoesOrdem}>
                 {requisicao.setor ? <p>Nome: {requisicao.usuario_req.split(" ")[0]}</p> : ""}
                 {requisicao.setor ? <p>Setor: {requisicao.setor}</p> : ""}
                 {requisicao.linha ? <p>Linha: {requisicao.linha}</p> : ""}
+                {requisicao.createdAt ? <p>{novoCreatedAt}</p> : ""}
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
@@ -115,7 +130,29 @@ const BodyOrdensConcluidas = () => {
                 <button onClick={() => { deletarOrdem(requisicao.id) }}>Excluir</button>
               </div>
             </li>
-          )) : ""}
+          )}) : ""}
+        </ul>
+        <ul className={styles.ordensRequisitadas}>
+          <h1>Ultimas ordens concluidas</h1>
+          {dados ? 
+            dados.map((requisicao, index) => {
+              // Formatando o campo createdAt
+              const novoCreatedAt = new Date(requisicao.createdAt).toLocaleString('pt-BR');
+              return (
+            <li className={styles.requisicaoC} key={index}>
+              <div className={styles.requisicoesOrdem}>
+                {requisicao.setor ? <p>Nome: {requisicao.usuario_req.split(" ")[0]}</p> : ""}
+                {requisicao.setor ? <p>Setor: {requisicao.setor}</p> : ""}
+                {requisicao.linha ? <p>Linha: {requisicao.linha}</p> : ""}
+                {requisicao.createdAt ? <p>{novoCreatedAt}</p> : ""}
+              </div>
+              <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
+              <div className={styles.botoesOrdensReq}>
+                <button onClick={() => window.location = `/ordemrequisitada/${requisicao.id}`}>Editar</button>
+                <button onClick={() => { deletarOrdem(requisicao.id) }}>Excluir</button>
+              </div>
+            </li>
+          )}) : ""}
         </ul>
       </div>
     </div>

@@ -9,12 +9,28 @@
   height: auto;
   padding: 15px;
   border-radius: 30px;
-  background-color: #ebe7e7;
+  background-color: #ebe9e9;
   margin-bottom: 15px;
 }
 
 .ordensReq h1{
-  margin-left: 5%;
+  margin: 15px  0 5px 5%;
+}
+
+.filtroForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filtroForm input{
+  padding: 5px;
+  margin: 5px;
+  outline: none;
+}
+.filtroForm button{
+  padding: 5px;
+  margin: 10px 0 0;
 }
 
 .ordensRequisitadas{
@@ -22,7 +38,7 @@
   list-style: none;
 }
 
-.requisicoesAberta{
+.requisicaoC{
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
