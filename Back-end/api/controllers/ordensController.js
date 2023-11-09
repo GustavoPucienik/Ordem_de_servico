@@ -43,8 +43,12 @@ class OrdensController {
   }
 
   static async filtrarOrdensConcluidas(req, res) {
-    const { filtroName, filtroSetor, filtroLinha } = req.query;
+    const {
+      filtroName, filtroSetor, filtroLinha, filtroDataInicio, filtroDataFim,
+    } = req.query;
 
+    console.log(filtroDataInicio);
+    console.log(filtroDataFim);
     try {
       // Usei o operador Sequelize 'like' para filtrar
       const ordensFiltradas = await database.Ordens.findAll({
@@ -64,6 +68,16 @@ class OrdensController {
             {
               linha: {
                 [Op.like]: `%${filtroLinha}%`,
+              },
+            },
+            {
+              createdAt: {
+                [Op.gte]: new Date(filtroDataInicio),
+              },
+            },
+            {
+              createdAt: {
+                [Op.lte]: new Date(filtroDataFim),
               },
             },
             // Adicionei outras colunas aqui, se necessário
