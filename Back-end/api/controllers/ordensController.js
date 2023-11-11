@@ -46,9 +46,6 @@ class OrdensController {
     const {
       filtroName, filtroSetor, filtroLinha, filtroDataInicio, filtroDataFim,
     } = req.query;
-
-    console.log(filtroDataInicio);
-    console.log(filtroDataFim);
     try {
       // Usei o operador Sequelize 'like' para filtrar
       const ordensFiltradas = await database.Ordens.findAll({
@@ -88,7 +85,6 @@ class OrdensController {
 
       res.json(ordensFiltradas);
     } catch (error) {
-      console.error("Erro ao buscar ordens:", error);
       res.status(500).json({ error: "Erro ao buscar ordens" });
     }
   }
