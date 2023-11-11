@@ -18,20 +18,25 @@ const CriarOrdemForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const controller = new AbortController();
         const token = localStorage.getItem('token');
-        const response = await axios.get(URLPegaDados, {
+        axios.get(URLPegaDados, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
         })
+        .then(function (response){
         setDados(response.data);
         setFormData({
           ...formData,
           usuario_req: response.data.nome, // Define o valor do campo usuario_req
           setor: response.data.setor, // Define o valor do campo setor
         });
+        })
+        .catch((error) => console.alert(error));
+        return () => controller.abort()
       } catch (error) {
-        alert( error);
+        alert("Erro ao buscar dados do usuário. Você sera redirecionado!", error);
         window.location = "/login";
       }
     };

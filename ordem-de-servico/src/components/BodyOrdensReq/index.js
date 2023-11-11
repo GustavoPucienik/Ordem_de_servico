@@ -1,11 +1,10 @@
-import styles from "./index.module.css";
 import React, { useEffect, useState } from 'react';
+import styles from "./index.module.css";
 import axios from "axios";
-import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { API_BASE_URL } from '../../config';
 
 const URLPegaRequisicoes = `${API_BASE_URL}/ordens`;
-const URLDeletaReq = `${API_BASE_URL}/ordens/`;
+const URLDeletaReq = `${API_BASE_URL}/ordens/`
 
 const BodyOrdensReq = () => {
   const [dados, setDados] = useState([]);
@@ -18,10 +17,10 @@ const BodyOrdensReq = () => {
     .catch((error) => {
       console.error("Erro ao excluir ordem:", error);
     });
+    
   }
 
   useEffect(()=> {
-    verificacaoUsuarioManutencao();
     axios.get(URLPegaRequisicoes, {
     })
     .then( function (response){

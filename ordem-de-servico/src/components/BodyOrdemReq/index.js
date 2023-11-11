@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./index.module.css";
 import axios from "axios";
-import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { useParams } from 'react-router-dom';
 import { API_BASE_URL } from '../../config';
 
@@ -24,7 +23,6 @@ const BodyOrdemReq = () => {
   });  
 
   useEffect(()=> {
-    verificacaoUsuarioManutencao();
     axios.get(`${URLPegaRequisicao}${id}`, {
     })
     .then( function (response){

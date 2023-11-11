@@ -1,7 +1,6 @@
-import styles from "./index.module.css";
 import React, { useEffect, useState } from 'react';
+import styles from "./index.module.css";
 import axios from "axios";
-import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { API_BASE_URL } from '../../config';
 import * as XLSX from "xlsx";
 
@@ -30,7 +29,6 @@ const BodyOrdensConcluidas = () => {
   }
 
   useEffect(() => {
-    verificacaoUsuarioManutencao()
     const pegaOrdens = () => {
       axios.get(URLPegaRequisicoes)
         .then((response) => {
