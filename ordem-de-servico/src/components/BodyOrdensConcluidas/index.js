@@ -150,7 +150,7 @@ const BodyOrdensConcluidas = () => {
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
-                <button onClick={() => window.location = `/ordemrequisitada/${requisicao.id}`}>Editar</button>
+                <button onClick={() => window.location = `/editarordem/${requisicao.id}`}>Editar</button>
                 <button onClick={() => { deletarOrdem(requisicao.id) }}>Excluir</button>
               </div>
             </li>
