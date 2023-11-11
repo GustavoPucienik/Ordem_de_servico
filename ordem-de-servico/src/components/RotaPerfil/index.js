@@ -2,7 +2,6 @@ import styles from "./index.module.css";
 import React, { useEffect, useState } from 'react';
 import Header from '../Header';
 import axios from "axios";
-import redireciona from "../../middlewares/SemTokenRedireciona.js";
 import { API_BASE_URL } from '../../config';
 
 const URLPegaDados = `${API_BASE_URL}/dadosusuario`;
@@ -12,7 +11,6 @@ const Dashboard = () => {
   const [nome, setNome] = useState("");
   const [setor, setSetor] = useState("");
   const [buttonDisabled, setButtonIsDisabled] = useState(true);
-  redireciona();
 
   useEffect(() => {
     const fetchData = async () => {
