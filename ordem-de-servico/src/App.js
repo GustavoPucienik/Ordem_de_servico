@@ -10,6 +10,7 @@ import RotaOrdens from './components/RotaOrdens';
 import OrdemRequisitada from './components/OrdemRequisitada'
 import RotaOrdensConcluidas from './components/RotaOrdensConcluidas'
 import RotaEditarOrdem from './components/RotaEditarOrdem';
+import RotaEditarLinhas from './components/RotaEditarLinhas';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/ordemrequisitada/:id" element={<OrdemRequisitada/>}/>
           <Route path="/ordensconcluidas" element={<RotaOrdensConcluidas/>}/>
           <Route path="/editarordem/:id" element={<RotaEditarOrdem/>}/>
+          <Route path="/editarlinhas" element={<RotaEditarLinhas/>}/>
         </Routes>
       </BrowserRouter>
     </div>
