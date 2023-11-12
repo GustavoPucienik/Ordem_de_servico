@@ -8,6 +8,7 @@ import ButtonCriaOrdem from "../ButtonCriaOrdem";
 import ButtonDashboard from "../ButtonDashboard";
 import ButtonVoltarOrdens from "../ButtonVoltarOrdens";
 import ButtonOrdensConcluidas from "../ButtonOrdensConcluidas";
+import ButtonEditarLinhas from "../ButtonEditarLinhas";
 
 const Header = (rota) => {
   return (
@@ -61,6 +62,7 @@ const Header = (rota) => {
         : null}
         {rota.nome === "ordens-concluidas"?
         <div>
+          <ButtonEditarLinhas />
           <ButtonVoltarOrdens/>
           <ButtonLogout/>
         </div>
