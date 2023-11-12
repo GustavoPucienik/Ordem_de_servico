@@ -54,6 +54,7 @@ const Header = (rota) => {
         
         {rota.nome === "ordem-req"?
         <div>
+          <ButtonOrdensConcluidas/>
           <ButtonVoltarOrdens/>
           <ButtonLogout/>
         </div>
