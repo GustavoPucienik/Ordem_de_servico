@@ -85,39 +85,34 @@ const BodyOrdensConcluidas = () => {
         <h1>Filtrar ordens Concluidas</h1>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js" integrity="sha512-jDEmOIskGs/j5S3wBWQAL4pOYy3S5a0y3Vav7BgXHnCVcUBXkf1OqzYS6njmDiKyqes22QEX8GSIZZ5pGk+9nA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <form className={styles.filtroForm} onSubmit={handleSubmit} >
+
           {/* Campo de filtro por nome de usuário */}
-          <input
-            type="text"
-            placeholder="Filtrar por nome de usuário"
-            value={filtroName}
-            onChange={(e) => setFiltroName(e.target.value)}
-          />
+          <input type="text" placeholder="Filtrar por nome de usuário" value={filtroName}
+            onChange={(e) => setFiltroName(e.target.value)}/>
           {/* Campo de filtro por setor */}
-          <input
-            type="text"
-            placeholder="Filtrar por setor"
-            value={filtroSetor}
-            onChange={(e) => setFiltroSetor(e.target.value)}
-          />
+          <input type="text" placeholder="Filtrar por setor" value={filtroSetor}
+            onChange={(e) => setFiltroSetor(e.target.value)}/>
           {/* Campo de filtro por Linha */}
-          <input
-            type="text"
-            placeholder="Filtrar por linha"
-            value={filtroLinha}
-            onChange={(e) => setFiltroLinha(e.target.value)}
-          />
-          <input type="date" value={filtroDataInicio} onChange={(e) => setFiltroDataInicio(e.target.value)}/>
-          <input type="date" value={filtroDataFim} onChange={(e) => setFiltroDataFim(e.target.value)}/>
-          <button type="submit">Filtrar</button>
-          {ordensFiltradas?<button type="button" onClick={downloadXLSX}>Baixar filtradas em xlsx</button>:""}
+          <input type="text" placeholder="Filtrar por linha" value={filtroLinha} 
+          onChange={(e) => setFiltroLinha(e.target.value)}/>
+          <div>
+            {/* Campo de filtro por inicio */}
+            <input type="date" required value={filtroDataInicio} onChange={(e) => setFiltroDataInicio(e.target.value)}/>
+            {/* Campo de filtro por termino */}
+            <input type="date" required value={filtroDataFim} onChange={(e) => setFiltroDataFim(e.target.value)}/>
+          </div>
+          <div>
+            <button type="submit">Filtrar</button>
+            {ordensFiltradas?<button type="button" onClick={downloadXLSX}>Baixar filtradas em xlsx</button>:""}
+          </div>
         </form>
         
-        <ul className={styles.ordensRequisitadas}>
-          {ordensFiltradas ? <h1>Ordens Filtradas</h1> : ""}
+          {ordensFiltradas != ![] ?
+        <ul className={styles.ordensRequisitadas}> <h1>Ordens Filtradas</h1> 
           {ordensFiltradas ?
             ordensFiltradas.map((requisicao, index) => {
               // Formatando o campo createdAt
-              const novoCreatedAt = new Date(requisicao.createdAt).toLocaleString('pt-BR');
+              const novoCreatedAt = new Date(requisicao.createdAt).toLocaleString('pt-BR').slice(0,17);
             return (
             <li className={styles.requisicaoC} key={index}>
               <div className={styles.requisicoesOrdem}>
@@ -133,13 +128,13 @@ const BodyOrdensConcluidas = () => {
               </div>
             </li>
           )}) : ""}
-        </ul>
+        </ul>: ""}
         <ul className={styles.ordensRequisitadas}>
           <h1>Ultimas ordens concluidas</h1>
           {dados ? 
             dados.map((requisicao, index) => {
               // Formatando o campo createdAt
-              const novoCreatedAt = new Date(requisicao.createdAt).toLocaleString('pt-BR');
+              const novoCreatedAt = new Date(requisicao.createdAt).toLocaleString('pt-BR').slice(0,17);
               return (
             <li className={styles.requisicaoC} key={index}>
               <div className={styles.requisicoesOrdem}>
