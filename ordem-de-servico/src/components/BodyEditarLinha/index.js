@@ -1,6 +1,6 @@
 import React from 'react'
 
-const index = () => {
+const BodyEditarLinhas = () => {
   return (
     <div>
       <h1>Rota para editar as linhas de produção</h1>
@@ -8,4 +8,4 @@ const index = () => {
   )
 }
 
-export default index
+export default BodyEditarLinhas;
