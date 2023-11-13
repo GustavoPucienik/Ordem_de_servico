@@ -2,6 +2,7 @@
 const express = require("express");
 const usuarios = require("./usuariosRoutes.js");
 const ordens = require("./ordensRoutes.js");
+const linhas = require("./linhasRoutes.js");
 
 const routes = (app) => {
   app.route("/").get((req, res) => {
@@ -12,6 +13,7 @@ const routes = (app) => {
     express.json(),
     usuarios,
     ordens,
+    linhas,
   );
 };
 
