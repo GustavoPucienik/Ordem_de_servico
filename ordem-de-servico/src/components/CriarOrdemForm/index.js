@@ -8,7 +8,6 @@ const URLCadastraOrdem = `${API_BASE_URL}/criarOrdem`;
 const URLPegaLinhas = `${API_BASE_URL}/linha`
 
 const CriarOrdemForm = () => {
-  const [dados, setDados] = useState(null);
   const [linhas, setLinhas] = useState([]);
   const [formData, setFormData] = useState({
     usuario_req: null,
@@ -26,7 +25,6 @@ const CriarOrdemForm = () => {
             Authorization: `Bearer ${token}`,
           }
         })
-        setDados(response.data);
         setFormData({
           ...formData,
           usuario_req: response.data.nome, // Define o valor do campo usuario_req
@@ -76,6 +74,7 @@ const CriarOrdemForm = () => {
       <input className={styles.inputCriarOrdem} name="setor" readOnly value={formData.setor}
       onChange={handleChange}/><br/>
         <select name="linha" className={styles.selectCriaOrdem} onChange={handleChange}>
+        <option value="">Selecione uma linha</option>
           {linhas? linhas.map((req, index) => (
             <option value={req.nomeDaLinha}>{req.nomeDaLinha}</option>
           )) : ""}
