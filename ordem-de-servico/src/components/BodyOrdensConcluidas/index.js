@@ -112,7 +112,7 @@ const BodyOrdensConcluidas = () => {
           </div>
         </form>
         
-          {ordensFiltradas !== ![] ?
+          {ordensFiltradas.length > 0 ?
         <ul className={styles.ordensRequisitadas}> <h1>Ordens Filtradas</h1> 
           {ordensFiltradas ?
             ordensFiltradas.map((requisicao, index) => {
