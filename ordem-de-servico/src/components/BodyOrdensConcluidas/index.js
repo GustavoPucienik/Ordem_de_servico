@@ -19,10 +19,13 @@ const BodyOrdensConcluidas = () => {
   const [filtroDataFim, setFiltroDataFim] = useState("");
 
   const deletarOrdem = (id) => {
-    axios.delete(`${URLDeletaReq}${id}`)
+    axios.delete(`${URLDeletaReq}${id}`,{})
     .then(() => {
       // Atualizar o estado para refletir a exclusão
       setDados((prevData) => prevData.filter((item) => item.id !== id));
+      if (ordensFiltradas.length > 0) {// Atualizar o estado para refletir a exclusão
+        setOrdensFiltradas((prevFiltradas) => prevFiltradas.filter((item) => item.id !== id));
+      }
     })
     .catch((error) => {
       console.error("Erro ao excluir ordem:", error);
@@ -32,7 +35,7 @@ const BodyOrdensConcluidas = () => {
   useEffect(() => {
     verificacaoUsuarioManutencao()
     const pegaOrdens = () => {
-      axios.get(URLPegaRequisicoes)
+      axios.get(URLPegaRequisicoes, {})
         .then((response) => {
           setDados(response.data);
         });
@@ -45,8 +48,10 @@ const BodyOrdensConcluidas = () => {
     console.log(filtroDataInicio)
     console.log(filtroDataFim)
       try {
-        const response = await axios.get(`${URLFiltradas}?filtroName=${filtroName}&filtroSetor=${filtroSetor}&filtroLinha=${filtroLinha}&filtroDataInicio=${filtroDataInicio}&filtroDataFim=${filtroDataFim}`);
-        setOrdensFiltradas(response.data);
+        await axios.get(`${URLFiltradas}?filtroName=${filtroName}&filtroSetor=${filtroSetor}&filtroLinha=${filtroLinha}&filtroDataInicio=${filtroDataInicio}&filtroDataFim=${filtroDataFim}`,{})
+        .then( function (response){
+          setOrdensFiltradas(response.data);
+        })
       } catch (error) {
         console.error("Erro ao buscar ordens:", error);
       }
