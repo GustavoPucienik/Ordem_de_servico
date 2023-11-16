@@ -10,7 +10,6 @@ const Dashboard = () => {
   const [dados, setDados] = useState(null);
   const [nome, setNome] = useState("");
   const [setor, setSetor] = useState("");
-  const [buttonDisabled, setButtonIsDisabled] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +24,6 @@ const Dashboard = () => {
         // Pré-preencha os campos com os dados do usuário
         setNome(response.data.nome);
         setSetor(response.data.setor);
-        if (response.data.setor === "Manutenção" || response.data.setor === "manutenção") {
-          setButtonIsDisabled(false);}
       } catch (error) {
         alert("Erro ao buscar dados do usuário. Você sera redirecionado!", error);
         window.location = "/login";
@@ -81,7 +78,9 @@ const Dashboard = () => {
             </div>
           </div>
           <div className={styles.buttonsPerfil}>
-          <button className={styles.botaoAlterar} onClick={() => {window.location = "/ordens"}} disabled={buttonDisabled} type="button">Fechar ordens</button>
+          {dados && (dados.setor === "Manutencao" || dados.setor === "Manutenção") ? (
+          <button className={styles.botaoAlterar} onClick={() => {window.location = "/ordens"}} type="button">Fechar ordens</button>)
+          :""}
           <button className={styles.botaoAlterar} type="submit">Alterar dados</button>
           </div>
         </form>
