@@ -1,4 +1,4 @@
-# Sistema de ordens de serviço da manutenção da apwinner
+# Sistema que desenvolvi para a empresa Ap Winner
 
 ## Para instalar as dependencias
 1. Entre com o terminal do node na pasta Back-end
