@@ -18,7 +18,9 @@ class LinhasController {
 
   static async pegarTodasLinhas(req, res) {
     try {
-      const todasLinhas = await database.linhas.findAll();
+      const todasLinhas = await database.linhas.findAll({
+        order: [["nomeDaLinha", "ASC"]],
+      });
       res.status(200).json(todasLinhas);
     } catch (error) {
       res.status(500).json({ error: "Erro ao obter todas as linhas.", details: error.message });
