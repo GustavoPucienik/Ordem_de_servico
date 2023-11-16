@@ -20,6 +20,7 @@ class OrdensController {
         where: {
           concluida: null,
         },
+        order: [["createdAt", "DESC"]],
       });
       return res.status(200).json(todasAsOrdens);
     } catch (error) {
@@ -33,7 +34,7 @@ class OrdensController {
         where: {
           concluida: true,
         },
-        order: [["updatedAt", "DESC"]], // Ordena por data de atualização em ordem decrescente
+        order: [["createdAt", "DESC"]], // Ordena por data de atualização em ordem decrescente
         limit: 10,
       });
       return res.status(200).json(todasAsOrdens);
