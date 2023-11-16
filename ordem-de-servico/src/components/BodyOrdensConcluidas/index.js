@@ -108,7 +108,7 @@ const BodyOrdensConcluidas = () => {
           </div>
           <div>
             <button type="submit">Filtrar</button>
-            {ordensFiltradas?<button type="button" onClick={downloadXLSX}>Baixar filtradas em xlsx</button>:""}
+            {ordensFiltradas.length > 0 ?<button type="button" onClick={downloadXLSX}>Baixar filtradas em xlsx</button>:""}
           </div>
         </form>
         
