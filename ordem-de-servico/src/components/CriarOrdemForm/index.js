@@ -57,11 +57,13 @@ const CriarOrdemForm = () => {
     e.preventDefault();
 
     try {
-      await axios.post(URLCadastraOrdem, formData, { headers: { "Content-Type": "application/json" }});
-      alert(`Ordem de serviço cadastrada com sucesso!`);
-      window.location = "/Perfil"
+      const response = await axios.post(URLCadastraOrdem, formData, { headers: { "Content-Type": "application/json" }});
+      if (response.data.msgErro) {
+        return alert(response.data.msgErro)
+      }
+      alert(response.data.msg);
     } catch (error) {
-      alert("Erro ao enviar dados:", error);
+      alert("Erro do front ao enviar dados:", error);
     }
   };
 
@@ -80,7 +82,7 @@ const CriarOrdemForm = () => {
           )) : ""}
         </select><br />
         <textarea className={styles.descricaoReq} type="text" name="descricao_req" onChange={handleChange}
-        placeholder="Descreva o problema aqui..." maxLength={255} />
+        placeholder="Descreva o problema aqui..." maxLength={255} required/>
         <button className={styles.ButtonCriarOrdem} type="submit">Enviar</button>
       </form>
     </div>

@@ -7,8 +7,11 @@ class OrdensController {
   static async criaOrdem(req, res) {
     const novaOrdem = req.body;
     try {
+      if (novaOrdem.nome === "" || novaOrdem.descricao_req === "") {
+        return res.status(200).json({ msgErro: "Sem informações de nome ou descrição para criar ordem" });
+      }
       const novaOrdemCriada = await database.Ordens.create(novaOrdem);
-      return res.status(201).json(novaOrdemCriada);
+      return res.status(201).json({ novaOrdemCriada, msg: "Ordem de serviço criada com sucesso" });
     } catch (error) {
       return res.status(500).json(error.message);
     }
