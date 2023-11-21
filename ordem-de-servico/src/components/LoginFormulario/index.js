@@ -25,8 +25,8 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     const response = await axios.post(baseURL, formData);
-    if (response.data.message) {
-      alert("email não existe ou a senha está incorreta!")
+    if (response.data.msg) {
+      return alert(response.data.msg);
     } else{
       const token = response.data.token; // Extrai o token da resposta
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
