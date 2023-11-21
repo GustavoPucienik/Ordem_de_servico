@@ -62,6 +62,10 @@ const CriarOrdemForm = () => {
         return alert(response.data.msgErro)
       }
       alert(response.data.msg);
+      setTimeout(() => {
+        alert("Você sera redirecionado!")
+        window.location = "/perfil"
+      },1500)
     } catch (error) {
       alert("Erro do front ao enviar dados:", error);
     }
