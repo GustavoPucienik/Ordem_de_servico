@@ -4,7 +4,7 @@ import axios from "axios";
 import { API_BASE_URL } from '../../config';
 
 const URLPegaDados = `${API_BASE_URL}/dadosusuario`;
-const URLCadastraOrdem = `${API_BASE_URL}/criarOrdem`;
+const URLCadastraOrdem = `${API_BASE_URL}/ordens`;
 const URLPegaLinhas = `${API_BASE_URL}/linha`
 
 const CriarOrdemForm = () => {

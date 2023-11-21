@@ -9,7 +9,7 @@ router
   .get("/ordens/:id", OrdensController.pegaOrdem)
   .get("/ordensconcluidas", OrdensController.mostraOrdensConcluidas)
   .get("/filtrarordensconcluidas", OrdensController.filtrarOrdensConcluidas)
-  .post("/criarOrdem", OrdensController.criaOrdem)
+  .post("/ordens", OrdensController.criaOrdem)
   .put("/ordens/:id", OrdensController.atualizaOrdem)
   .delete("/ordens/:id", OrdensController.deletaOrdem);
 
