@@ -35,11 +35,11 @@ class LinhasController {
       const linhaExistente = await database.linhas.findByPk(id);
 
       if (!linhaExistente) {
-        return res.status(404).json({ error: "Linha não encontrada." });
+        return res.status(404).json({ msg: "Linha não encontrada." });
       }
 
       await linhaExistente.update(novosDados);
-      return res.status(200).json({ message: `A linha: ${linhaExistente.nomeDaLinha} foi atualizada.` });
+      return res.status(204).json({ msg: `A linha: ${linhaExistente.nomeDaLinha} foi atualizada.` });
     } catch (error) {
       return res.status(500).json({ error: "Erro ao atualizar a linha.", details: error.message });
     }

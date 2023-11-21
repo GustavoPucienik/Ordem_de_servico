@@ -107,7 +107,7 @@ class OrdensController {
       novasInfos.updatedAt = new Date();
       await database.Ordens.update(novasInfos, { where: { id: Number(id) } });
       const ordemAtualizada = await database.Ordens.findOne({ where: { id: Number(id) } });
-      return res.status(200).json(ordemAtualizada);
+      return res.status(204).json(ordemAtualizada);
     } catch (error) {
       return res.status(500).json(error.message);
     }
