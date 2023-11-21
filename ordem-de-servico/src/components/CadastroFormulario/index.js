@@ -34,8 +34,10 @@ const CadastroForm = () => {
 
     try {
       const response = await axios.post(baseURL, formData, { headers: { "Content-Type": "application/json" }});
-      console.log("Resposta do servidor:", response.data);
-      alert(`Usuario ${formData.nome} cadastrado com sucesso!`);
+      if (response.data.msg) {
+      return alert(response.data.msg);
+      }
+      alert(`Usuario ${response.data.nome} cadastrado com sucesso!`);
       window.location = "/login";
     } catch (error) {
       alert("Erro ao enviar dados:", error);
