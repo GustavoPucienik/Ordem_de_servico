@@ -31,7 +31,7 @@ const BodyOrdemReq = () => {
       setDados(response.data);
       //setFormData({ ...formData, mecanicoQresolveu: dados.nome })
     })
-  },[]);
+  },[id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
