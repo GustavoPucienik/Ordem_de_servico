@@ -42,7 +42,7 @@ const CriarOrdemForm = () => {
       }
     };
     fetchData();
-  }, [formData]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
