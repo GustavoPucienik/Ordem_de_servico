@@ -85,13 +85,26 @@ class UsuarioController {
     }
   }
 
-  static async atualizarUsuario(req, res) {
-    const { nome, setor, email } = req.body;
+  static async atualizarSenha(req, res) {
+    const { senha, novaSenha, email } = req.body;
+
+    const usuarioquelogou = await database.usuarios.findOne({
+      where: {
+        email,
+      },
+    });
+
+    const senhasIguais = await compare(senha, usuarioquelogou.senha);
+
+    if (!senhasIguais) {
+      return res.status(200).json({ msg: "A senha está incorreta!" });
+    }
+
+    const senhaHash = await hash(novaSenha, 8);
 
     await database.usuarios.update(
       {
-        nome,
-        setor,
+        senha: senhaHash,
       },
       {
         where: {
@@ -104,7 +117,7 @@ class UsuarioController {
         email,
       },
     });
-    res.status(204).json(dadosUsuario);
+    return res.status(204).json(dadosUsuario);
   }
 
   static async deletarUsuario(req, res) {
