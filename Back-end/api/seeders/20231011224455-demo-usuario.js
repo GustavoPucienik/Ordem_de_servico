@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.bulkInsert("Usuarios", [{
-    nome: "joaozinho",
+    nome: "Gustavo",
     senha: "senha",
     email: "g@gmail.com",
     setor: "Manutenção",
