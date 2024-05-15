@@ -51,6 +51,7 @@ const EditarLinhas = () => {
 
   return (
     <div className={styles.bodyEditarlinhas}>
+      <h1>Mudar linhas</h1>
       <form className={styles.formulario} onSubmit={inserirLinha}>
         <input
           type="text" required
@@ -65,7 +66,6 @@ const EditarLinhas = () => {
           <li className={styles.listaPorLinha} key={i}>
             <p>{res.nomeDaLinha}</p>
             <div className={styles.buttons}>
-              <button className={styles.buttonsLinhas}>Editar</button>
               <button className={styles.buttonsLinhas} onClick={() => handleDelete(res.id)}>Excluir</button>
             </div>
           </li>
