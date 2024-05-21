@@ -4,6 +4,7 @@ import axios from "axios";
 import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { API_BASE_URL } from '../../config';
 import * as XLSX from "xlsx";
+import { format } from 'date-fns';
 
 const URLPegaRequisicoes = `${API_BASE_URL}/ordensconcluidas`;
 const URLDeletaReq = `${API_BASE_URL}/ordens/`;
@@ -45,8 +46,6 @@ const BodyOrdensConcluidas = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(filtroDataInicio)
-    console.log(filtroDataFim)
       try {
         await axios.get(`${URLFiltradas}?filtroName=${filtroName}&filtroSetor=${filtroSetor}&filtroLinha=${filtroLinha}&filtroDataInicio=${filtroDataInicio}&filtroDataFim=${filtroDataFim}`,{})
         .then( function (response){
@@ -72,10 +71,22 @@ const BodyOrdensConcluidas = () => {
     const header = ["nome", "setor", "linha", "descrição do usuario", "Tipo de serviço", "Técnicos", 
     `inicio`, `termino`, `tempo`, `parada de máquina`, `item_defeito`, `problema`, `solucao`, 
     `concluida`];
-    const data = [header, ...ordensFiltradas.map(requisicao => [requisicao.usuario_req, requisicao.setor,
-      requisicao.linha, requisicao.descricao_req, requisicao.tipo_servico, requisicao.mecanicos,
-      requisicao.inicio, requisicao.termino, requisicao.tempo, requisicao.parada_maquina,
-      requisicao.item_defeito, requisicao.problema, requisicao.solucao, requisicao.concluida])];
+    const data = [header, ...ordensFiltradas.map(requisicao => [
+      requisicao.usuario_req,
+      requisicao.setor,
+      requisicao.linha,
+      requisicao.descricao_req,
+      requisicao.tipo_servico,
+      requisicao.mecanicos,
+      format(new Date(requisicao.inicio), 'dd/MM/yyyy HH:mm'), // Formatar inicio
+      format(new Date(requisicao.termino), 'dd/MM/yyyy HH:mm'), // Formatar termino
+      requisicao.tempo,
+      requisicao.parada_maquina,
+      requisicao.item_defeito,
+      requisicao.problema,
+      requisicao.solucao,
+      requisicao.concluida
+    ])];
     
     const ws = XLSX.utils.aoa_to_sheet(data);
     
