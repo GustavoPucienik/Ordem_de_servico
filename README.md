@@ -1,29 +1,52 @@
 # Sistema que desenvolvi para a empresa Ap Winner
 
-## Para instalar as dependencias
+## Sobre o projeto
+Este sistema foi desenvolvido para simplificar o gerenciamento de ordens de serviço para o setor de manutenção.
+
+## Tecnologias utilizadas
+- **node**: Ambiente de execução javascript.
+- **React**: Frameworks para desenvolver aplicação javascript.
+- **mysql**: Banco de dados relacional.
+
+## Principais bibliotecas
+- **Express**: Framework web rápido, flexível e minimalista para criação de API Node.js.
+- **bcryptjs**: Biblioteca para criptografia em JavaScript.
+- **body-parser**: Middleware para analisar corpos de requisição em Node.js.
+- **cors**: Middleware para habilitar o Cross-Origin Resource Sharing (CORS) em Express.
+- **dotenv**: Carrega variáveis de ambiente de um arquivo `.env` para o `process.env`.
+- **eslist**: Ferramenta de análise de código estática para identificar padrões problemáticos e corrigir identação do código JavaScript.
+- **jsonwebtoken**: Implementação de JSON Web Tokens (JWT) para Node.js.
+- **mysql2**: Conector MySQL para Node.js que promove desempenho e escalabilidade.
+- **path**: Utilitário que fornece utilitários para trabalhar com caminhos de arquivo e diretório.
+- **sequelize**: ORM (Object-Relational Mapping) Node.js para suporte a MySQL, PostgreSQL, SQLite e outros.
+- **sequelize-cli**: Interface de linha de comando para Sequelize, facilitando a criação e gerenciamento de modelos e migrações.
+
+## Passo a passo para rodar localmente
+
+### Para instalar as dependencias
 1. Entre com o terminal do node na pasta Back-end
 2. Execute o comando "npm install"
 3. Entre com o terminal do node na pasta ordem-de-servico
 4. Execute o comando "npm install"
 
-## Definir porta da aplicação frontend nos seguintes arquivos
+### Definir porta da aplicação frontend nos seguintes arquivos
 1. ordem-de-servico/.env
 
-## Definir porta da api nos seguintes arquivos
+### Definir porta da api nos seguintes arquivos
 1. ordem-de-servico/package-lock.json
 2. ordem-de-servico/src/config/index.js
 3. Back-end/.env
 
-## Definir banco de dados no seguinte arquivo
+### Definir banco de dados no seguinte arquivo
 - Back-end/api/config/config.json
 
-## Popular o banco de dados
+### Popular o banco de dados
 1. Crie o banco de dados com nome ordemservico
 2. Entre com o terminal do node na pasta Back-end
 3. Execute o comando "npx sequelize-cli db:migrate"
 4. Execute o comando "npx sequelize-cli db:seed:all"
 
-## Iniciando a API e a aplicação front-end
+### Iniciando a API e a aplicação front-end
 1. Entre com o terminal do node na pasta Back-end
 2. Execute o comando "npm run start"
 3. Entre com o terminal do node na pasta ordem-de-servico
@@ -36,47 +59,43 @@ ordem-de-servico/
 
 ├── src/
 
-│   ├── components/
+────└─ components/
 
-│   ├── config/
+────└─ config/
 
-│   ├── img/
+────└─ img/
 
-│   ├── App.js
+────└─ App.js
 
-│   ├── index.js
+────└─ index.js
 
-├── .env
-
-├── package.json
+└── .env
 
 
 Back-end/
 
-├── api/
+├── api/                #Código fonte da API
 
-│   ├── config/
+────└─ config/         #Configuração do banco de dados
 
-│   ├── controllers/
+────└─ controllers/    #Função dos controles das rotas
 
-│   ├── migrations/
+────└─ migrations/     #Arquivos de migração dos dados
 
-│   ├── models/
+────└─ models/         #Modelos dos dados
 
-│   ├── rotas/
+────└─ rotas/          #Definição das rotas da API
 
-│   ├── seeders/
+────└─ seeders/        #Arquivo para semear os dados
 
-│   ├── app.js
+────└─ app.js
 
 ├── .env
 
-├── server.js
-
-├── package.json
+└── server.js
 
 
-# Endpoints da API
+# Endpoints da API:
 
 ## Rota de usuarios
 
