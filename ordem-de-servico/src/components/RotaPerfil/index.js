@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Header';
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
+import verificaUsuario from "../../middlewares/checkaUsuario";
 
 const URLPegaDados = `${API_BASE_URL}/dadosusuario`;
 const URLAtualizarSenha = `${API_BASE_URL}/dadosusuario`;
@@ -71,7 +72,7 @@ const Dashboard = () => {
       <Header nome="perfil" />
       <div className={styles.bodyDashboard}>
         <form className={styles.dashboard} onSubmit={handleSubmit}>
-          <h1>Altere sua senha</h1>
+          <h1>Perfil</h1>
           <div className={styles.dadosDashboard}>
             <div className={styles.coluna0}>
               <label>Nome:</label>
@@ -123,4 +124,4 @@ const Dashboard = () => {
   );
 }
 
-export default Dashboard;
+export default verificaUsuario(Dashboard); //Middleware que verifica se o usuario tem token de autenticação

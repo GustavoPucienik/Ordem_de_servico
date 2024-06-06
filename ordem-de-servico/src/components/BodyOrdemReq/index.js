@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styles from "./index.module.css";
 import axios from "axios";
-import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
-import { useParams } from 'react-router-dom';
 import { API_BASE_URL } from '../../config';
+import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
+import verificaUsuario from '../../middlewares/checkaUsuario.js';
+import { useParams } from 'react-router-dom';
 
+// URL para acessar os dados da ordem de serviço
 const URLPegaRequisicao = `${API_BASE_URL}/ordens/`;
 
 const BodyOrdemReq = () => {
-  const { id } = useParams();
-  const [dados, setDados] = useState([]);
+  const { id } = useParams();// Obtém o ID da ordem de serviço da URL
+  const [dados, setDados] = useState([]); // Estado para armazenar os dados da ordem de serviço
   const [formData, setFormData] = useState({
     tipo_servico: "",
     inicio: "",
@@ -24,8 +26,8 @@ const BodyOrdemReq = () => {
   });  
 
   useEffect(()=> {
-    verificacaoUsuarioManutencao();
-    axios.get(`${URLPegaRequisicao}${id}`, {
+    verificacaoUsuarioManutencao();// Verifica se o usuário tem permissão de manutenção
+    axios.get(`${URLPegaRequisicao}${id}`, { // Obtém os dados da ordem de serviço com o ID específico
     })
     .then( function (response){
       setDados(response.data);
@@ -33,6 +35,7 @@ const BodyOrdemReq = () => {
     })
   },[id]);
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -44,7 +47,7 @@ const BodyOrdemReq = () => {
     } catch (error) {
       alert("Erro ao atualizar a ordem de serviço:", error);
     }
-    window.location = "/ordensconcluidas";
+    window.location = "/ordensconcluidas"; // Redireciona após o envio do formulário
   };
 
   return (
@@ -113,4 +116,4 @@ const BodyOrdemReq = () => {
   )
 }
 
-export default BodyOrdemReq
+export default verificaUsuario(BodyOrdemReq); // Aplica middleware de verificação de usuári

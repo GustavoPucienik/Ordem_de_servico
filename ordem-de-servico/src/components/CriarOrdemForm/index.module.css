@@ -9,21 +9,36 @@
 
 .formCriaOrdem{
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .formCriaOrdem p{
-  font-weight: 700;
+  font-weight: 600;
   font-size: 20px;
+}
+
+.requisitante{
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+
+.requisitante label{
+  text-align: start;
 }
 
 .inputCriarOrdem{
   outline: none;
-  cursor: default;
-  border: none;
-  text-align: center;
   font-size: 16px;
   font-weight: 700;
-  background-color: #ebe7e7;
+  padding: 5px;
+  margin: 5px;
+}
+
+.inputCriarOrdem::placeholder{
+  color: #333;
 }
 
 .selectCriaOrdem{

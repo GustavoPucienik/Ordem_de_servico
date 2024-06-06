@@ -3,12 +3,16 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { API_BASE_URL } from '../../config';
+import verificaUsuario from "../../middlewares/checkaUsuario.js";
 
+// URLs para acessar dados e operações relacionadas às ordens de serviço
 const URLPegaRequisicoes = `${API_BASE_URL}/ordens`;
 const URLDeletaReq = `${API_BASE_URL}/ordens/`;
 
 const BodyOrdensReq = () => {
-  const [dados, setDados] = useState([]);
+  const [dados, setDados] = useState([]); // Estado para armazenar todas as ordens de serviço
+
+  // Função para deletar uma ordem de serviço
   const deletarOrdem = (id) => {
     axios.delete(`${URLDeletaReq}${id}`)
     .then(() => {
@@ -20,12 +24,13 @@ const BodyOrdensReq = () => {
     });
   }
 
+  // Efeito para buscar as ordens de serviço ao montar o componente
   useEffect(()=> {
-    verificacaoUsuarioManutencao();
+    verificacaoUsuarioManutencao(); // Verifica se o usuário tem permissão de manutenção
     axios.get(URLPegaRequisicoes, {
     })
     .then( function (response){
-      setDados(response.data);
+      setDados(response.data); // Define as ordens de serviço no estado
     });
   },[])
   return (
@@ -53,4 +58,5 @@ const BodyOrdensReq = () => {
   )
 }
 
-export default BodyOrdensReq
+//middleware que verifica se o usuario possui token de autenticação
+export default verificaUsuario(BodyOrdensReq);

@@ -10,15 +10,15 @@ import ButtonVoltarOrdens from "../ButtonVoltarOrdens";
 import ButtonOrdensConcluidas from "../ButtonOrdensConcluidas";
 import ButtonEditarLinhas from "../ButtonEditarLinhas";
 
-const Header = (rota) => {
+const Header = (rota) => {  // Header com mais gambiarra que você vai ver na vida
   return (
   <>
     <div className={styles.hheader}>
       <Logo/>
         {rota.nome === "home"?
         <div>
+          <ButtonCriaOrdem/>
           <ButtonLogin/>
-          <ButtonCadastro/>
         </div>
         : null}
         {rota.nome === "login"?
@@ -41,8 +41,8 @@ const Header = (rota) => {
         : null}
         {rota.nome === "criarOrdem"?
         <div>
-          <ButtonDashboard/>
-          <ButtonLogout/>
+          <ButtonVoltar/>
+          <ButtonLogin/>
         </div>
         : null}
         {rota.nome === "ordens-req"?

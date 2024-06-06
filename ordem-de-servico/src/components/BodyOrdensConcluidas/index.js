@@ -5,26 +5,30 @@ import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManuten
 import { API_BASE_URL } from '../../config';
 import * as XLSX from "xlsx";
 import { format } from 'date-fns';
+import verificaUsuario from "../../middlewares/checkaUsuario.js";
 
+// URLs para acessar dados e operações relacionadas às ordens de serviço
 const URLPegaRequisicoes = `${API_BASE_URL}/ordensconcluidas`;
 const URLDeletaReq = `${API_BASE_URL}/ordens/`;
 const URLFiltradas = `${API_BASE_URL}/filtrarordensconcluidas`;
 
 const BodyOrdensConcluidas = () => {
-  const [dados, setDados] = useState([]);
-  const [ordensFiltradas, setOrdensFiltradas] = useState([]);
-  const [filtroName, setFiltroName] = useState("");
-  const [filtroSetor, setFiltroSetor] = useState("");
-  const [filtroLinha, setFiltroLinha] = useState("");
-  const [filtroDataInicio, setFiltroDataInicio] = useState("");
-  const [filtroDataFim, setFiltroDataFim] = useState("");
+  const [dados, setDados] = useState([]);// Estado para armazenar todas as ordens de serviço
+  const [ordensFiltradas, setOrdensFiltradas] = useState([]); // Estado para armazenar as ordens de serviço filtradas
+  const [filtroName, setFiltroName] = useState(""); // Estado para o filtro por nome de usuário
+  const [filtroSetor, setFiltroSetor] = useState("");// Estado para o filtro por setor
+  const [filtroLinha, setFiltroLinha] = useState("");// Estado para o filtro por linha
+  const [filtroDataInicio, setFiltroDataInicio] = useState("");// Estado para o filtro de data de início
+  const [filtroDataFim, setFiltroDataFim] = useState("");// Estado para o filtro de data de fim
 
+  // Função para deletar uma ordem de serviço
   const deletarOrdem = (id) => {
     axios.delete(`${URLDeletaReq}${id}`,{})
     .then(() => {
       // Atualizar o estado para refletir a exclusão
       setDados((prevData) => prevData.filter((item) => item.id !== id));
-      if (ordensFiltradas.length > 0) {// Atualizar o estado para refletir a exclusão
+      // Se houver ordens filtradas, atualizar o estado para refletir a exclusão
+      if (ordensFiltradas.length > 0) {
         setOrdensFiltradas((prevFiltradas) => prevFiltradas.filter((item) => item.id !== id));
       }
     })
@@ -33,29 +37,33 @@ const BodyOrdensConcluidas = () => {
     });
   }
 
+  // Efeito para buscar as ordens de serviço ao montar o componente
   useEffect(() => {
     verificacaoUsuarioManutencao()
     const pegaOrdens = () => {
       axios.get(URLPegaRequisicoes, {})
         .then((response) => {
-          setDados(response.data);
+          setDados(response.data); // Define as ordens de serviço no estado
         });
     }
     pegaOrdens();
   }, []);
 
+  // Função para lidar com o envio do formulário de filtro
   const handleSubmit = async (e) => {
     e.preventDefault();
       try {
+        // Enviar solicitação para obter ordens de serviço filtradas
         await axios.get(`${URLFiltradas}?filtroName=${filtroName}&filtroSetor=${filtroSetor}&filtroLinha=${filtroLinha}&filtroDataInicio=${filtroDataInicio}&filtroDataFim=${filtroDataFim}`,{})
         .then( function (response){
-          setOrdensFiltradas(response.data);
+          setOrdensFiltradas(response.data);// Definir as ordens de serviço filtradas no estado
         })
       } catch (error) {
         console.error("Erro ao buscar ordens:", error);
       }
   };
 
+  // Função para baixar as ordens de serviço filtradas em formato XLSX
   const downloadXLSX = () => {
     const wb = XLSX.utils.book_new();
     
@@ -68,9 +76,12 @@ const BodyOrdensConcluidas = () => {
     
     wb.SheetNames.push('Ordens Apwinner');
     
+    // Cabeçalho das colunas no arquivo XLS
     const header = ["nome", "setor", "linha", "descrição do usuario", "Tipo de serviço", "Técnicos", 
     `inicio`, `termino`, `tempo`, `parada de máquina`, `item_defeito`, `problema`, `solucao`, 
     `concluida`];
+
+    // Dados das ordens de serviço filtradas para o arquivo XLSX
     const data = [header, ...ordensFiltradas.map(requisicao => [
       requisicao.usuario_req,
       requisicao.setor,
@@ -78,8 +89,8 @@ const BodyOrdensConcluidas = () => {
       requisicao.descricao_req,
       requisicao.tipo_servico,
       requisicao.mecanicos,
-      format(new Date(requisicao.inicio), 'dd/MM/yyyy HH:mm'), // Formatar inicio
-      format(new Date(requisicao.termino), 'dd/MM/yyyy HH:mm'), // Formatar termino
+      format(new Date(requisicao.inicio), 'dd/MM/yyyy HH:mm'), // Formatar inicio da manutenção
+      format(new Date(requisicao.termino), 'dd/MM/yyyy HH:mm'), // Formatar termino da manutenção
       requisicao.tempo,
       requisicao.parada_maquina,
       requisicao.item_defeito,
@@ -92,6 +103,7 @@ const BodyOrdensConcluidas = () => {
     
     wb.Sheets['Ordens Apwinner'] = ws;
     
+    // Baixar o arquivo XLSX com as ordens de serviço filtradas
     XLSX.writeFile(wb, 'Relatório de manutenção AP WINNER.xlsx', { bookType: 'xlsx', type: 'bynary'});
   };
 
@@ -172,4 +184,4 @@ const BodyOrdensConcluidas = () => {
   )
 }
 
-export default BodyOrdensConcluidas;
+export default verificaUsuario(BodyOrdensConcluidas); //Verificar se o usuario tem token de autenticação

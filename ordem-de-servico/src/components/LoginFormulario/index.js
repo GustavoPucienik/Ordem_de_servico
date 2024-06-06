@@ -1,19 +1,20 @@
-import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
-import styles from "./index.module.css";
-import axios from "axios";
-import { API_BASE_URL } from '../../config';
+import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate do react-router-dom para navegação
+import React, { useEffect, useState } from 'react';
+import styles from "./index.module.css"; // Importa os estilos específicos para este componente
+import axios from "axios"; // Importa a biblioteca Axios para realizar requisições HTTP
+import { API_BASE_URL } from '../../config'; // Importa a URL base da API a partir das configurações
 
-const baseURL = `${API_BASE_URL}/login`;
+const baseURL = `${API_BASE_URL}/login`; // URL para o endpoint de login
 
 const LoginForm = () => {
-  const history = useNavigate();
+  const history = useNavigate(); // Hook do react-router-dom para navegação
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({ // setar os estados do email e senha que serão enviados para a api
     email: "",
     senha: ""
   });
 
+// Função para lidar com as mudanças nos campos do formulário
 const handleChange = async (e) => {
   const { name, value } = e.target;
   setFormData({
@@ -21,21 +22,30 @@ const handleChange = async (e) => {
     [name]: value,
   });}
 
+// Verifica se o usuário já está logado ao montar o componente
+useEffect(() => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    history('/perfil'); // Redireciona para o perfil
+  }
+}, [history]);
+
+// Função para lidar com o envio do formulário
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post(baseURL, formData);
+    const response = await axios.post(baseURL, formData);// Envia os dados do formulário para a API de login
     if (response.data.msg) {
-      return alert(response.data.msg);
+      return alert(response.data.msg); // Exibe uma mensagem de erro, se houver, retornada pela API
     } else{
       const token = response.data.token; // Extrai o token da resposta
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    localStorage.setItem('token', token)
-    alert(`Usuario com email ${formData.email} logado com sucesso!`);
-    history('/perfil');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Define o token como padrão para as futuras requisições Axios
+    localStorage.setItem('token', token) // Armazena o token no localStorage para sessão persistente
+    alert(`Usuario com email ${formData.email} logado com sucesso!`); // Exibe uma mensagem de sucesso
+    history('/perfil');// Navega para a página de perfil
     }
   } catch (error) {
-    console.error("Erro ao logar:", error);
+    console.error("Erro ao logar:", error); // Exibe um erro caso ocorra um problema na requisição
   }
 
 }

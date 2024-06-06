@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import styles from "../RotaCadastro/index.module.css";
-import axios from "axios";
-import { API_BASE_URL } from '../../config';
+import styles from "../RotaCadastro/index.module.css";// Importa os estilos específicos para este componente
+import axios from "axios";// Importa a biblioteca Axios para realizar requisições HTTP
+import { API_BASE_URL } from '../../config';// Importa a URL base da API a partir das configurações
 
-const baseURL = `${API_BASE_URL}/cadastrar`;
+const baseURL = `${API_BASE_URL}/cadastrar`; // URL para o endpoint de cadastro
 
 
 const CadastroForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({// Define o estado inicial para os dados do formulário
     nome: "",
     setor: "",
     email: "",
     senha: "",
   });
 
-  
+  // Função para atualizar o estado conforme os campos do formulário são preenchidos
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -23,6 +23,7 @@ const CadastroForm = () => {
     });
   };
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,14 +34,15 @@ const CadastroForm = () => {
     }
 
     try {
+      // Envia os dados do formulário para a API para realizar o cadastro
       const response = await axios.post(baseURL, formData, { headers: { "Content-Type": "application/json" }});
       if (response.data.msg) {
       return alert(response.data.msg);
       }
       alert(`Usuario ${response.data.nome} cadastrado com sucesso!`);
-      window.location = "/login";
+      window.location = "/login"; // Redireciona para a página de login após o cadastro bem-sucedido
     } catch (error) {
-      alert("Erro ao enviar dados:", error);
+      alert("Erro ao enviar dados:", error); // Exibe um alerta em caso de erro no envio dos dados
     }
   };
   return (
@@ -97,4 +99,4 @@ const CadastroForm = () => {
   )
 }
 
-export default CadastroForm;
+export default CadastroForm; // Exporta o componente de formulário de cadastro

@@ -1,11 +1,8 @@
 import styles from "../Header/index.module.css"
-function vaiprateladeCadastro(){
-  window.location = "/cadastrar";
-}
 
 const Button = () => {
   return (
-    <button className={styles.buttonHeader} onClick={vaiprateladeCadastro}>Cadastro</button>
+    <button className={styles.buttonHeader} onClick={() => window.location = "/cadastrar"}>Cadastro</button>
   )
 }
 
