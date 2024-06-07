@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';// Hook do react-router-dom para navegação
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
 import axios from 'axios';

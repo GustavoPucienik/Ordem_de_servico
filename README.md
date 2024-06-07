@@ -10,16 +10,22 @@ Este sistema foi desenvolvido para simplificar o gerenciamento de ordens de serv
 
 ## Principais bibliotecas
 - **Express**: Framework web rápido, flexível e minimalista para criação de API Node.js.
-- **bcryptjs**: Biblioteca para criptografia em JavaScript.
+- **axios**: Cliente HTTP baseado em Promises para fazer requisições HTTP tanto no navegador quanto no Node.js.
 - **body-parser**: Middleware para analisar corpos de requisição em Node.js.
 - **cors**: Middleware para habilitar o Cross-Origin Resource Sharing (CORS) em Express.
 - **dotenv**: Carrega variáveis de ambiente de um arquivo `.env` para o `process.env`.
-- **eslist**: Ferramenta de análise de código estática para identificar padrões problemáticos e corrigir identação do código JavaScript.
+- **bcryptjs**: Biblioteca para criptografia em JavaScript.
 - **jsonwebtoken**: Implementação de JSON Web Tokens (JWT) para Node.js.
 - **mysql2**: Conector MySQL para Node.js que promove desempenho e escalabilidade.
-- **path**: Utilitário que fornece utilitários para trabalhar com caminhos de arquivo e diretório.
 - **sequelize**: ORM (Object-Relational Mapping) Node.js para suporte a MySQL, PostgreSQL, SQLite e outros.
 - **sequelize-cli**: Interface de linha de comando para Sequelize, facilitando a criação e gerenciamento de modelos e migrações.
+- **xlsx**: Biblioteca para ler e escrever arquivos do Excel em JavaScript.
+- **date-fns**: Biblioteca moderna para manipulação de datas em JavaScript.
+- **react-dom**: Pacote do ReactDOM para manipulação do DOM em aplicações React.
+- **react-router-dom**: Pacote React Router para roteamento em aplicações React.
+- **web-vitals**: Biblioteca para medir e rastrear métricas de desempenho de uma página da web.
+- **path**: Utilitário que fornece utilitários para trabalhar com caminhos de arquivo e diretório.
+- **eslist**: Ferramenta de análise de código estática para identificar padrões problemáticos e corrigir identação do código JavaScript.
 
 ## Passo a passo para rodar localmente
 
@@ -55,44 +61,44 @@ Este sistema foi desenvolvido para simplificar o gerenciamento de ordens de serv
 ## Estrutura do projeto
 ordem-de-servico/
 
-├── public/ 
+├── public/ : Este é o diretório dos arquivos estáticos, como imagens ou fontes. Acessados publicamente pelo navegador.
 
-├── src/
+├── src/ : Este é o diretório principal do código-fonte.
 
-────└─ components/
+────└─ components/ : Aqui é onde fica armazenado os componentes reutilizáveis que compõem a interface do usuário do seu aplicativo.
 
-────└─ config/
+────└─ config/ : Arquivos de configuração, como para configurações de roteamento ou de ambiente.
 
-────└─ img/
+────└─ img/ : Onde as imagens utilizadas em seu aplicativo são ser armazenadas.
 
-────└─ App.js
+────└─ App.js : O ponto de entrada principal do seu aplicativo React. Componente raiz que encapsula todos os outros componentes.
 
-────└─ index.js
+────└─ index.js : Ponto de entrada para o navegador. Renderiza o componente principal do seu aplicativo (App.js) no DOM.
 
-└── .env
+└── .env : Este arquivo contem variáveis de ambiente, como chaves de API ou URLs de backend.
 
 
 Back-end/
 
-├── api/                #Código fonte da API
+├── api/               : Código fonte da API
 
-────└─ config/         #Configuração do banco de dados
+────└─ config/         : Configuração do banco de dados
 
-────└─ controllers/    #Função dos controles das rotas
+────└─ controllers/    : Função dos controles das rotas
 
-────└─ migrations/     #Arquivos de migração dos dados
+────└─ migrations/     : Arquivos de migração dos dados
 
-────└─ models/         #Modelos dos dados
+────└─ models/         : Modelos dos dados
 
-────└─ rotas/          #Definição das rotas da API
+────└─ rotas/          : Definição das rotas da API
 
-────└─ seeders/        #Arquivo para semear os dados
+────└─ seeders/        : Arquivo para semear os dados
 
-────└─ app.js
+────└─ app.js : Ponto de entrada da sua aplicação backend. Onde você configura e inicializa sua aplicação.
 
-├── .env
+├── .env : Variáveis de ambiente
 
-└── server.js
+└── server.js : Responsável por iniciar o servidor HTTP para sua aplicação.
 
 
 # Endpoints da API:
