@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";// Hook do react-router-dom para navegação
 
 // Função de ordem superior (HOC) que verifica se o usuário está autenticado
 const verificaUsuario = (WrappedComponent) => {

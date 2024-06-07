@@ -10,16 +10,22 @@ Este sistema foi desenvolvido para simplificar o gerenciamento de ordens de serv
 
 ## Principais bibliotecas
 - **Express**: Framework web rápido, flexível e minimalista para criação de API Node.js.
-- **bcryptjs**: Biblioteca para criptografia em JavaScript.
+- **axios**: Cliente HTTP baseado em Promises para fazer requisições HTTP tanto no navegador quanto no Node.js.
 - **body-parser**: Middleware para analisar corpos de requisição em Node.js.
 - **cors**: Middleware para habilitar o Cross-Origin Resource Sharing (CORS) em Express.
 - **dotenv**: Carrega variáveis de ambiente de um arquivo `.env` para o `process.env`.
-- **eslist**: Ferramenta de análise de código estática para identificar padrões problemáticos e corrigir identação do código JavaScript.
+- **bcryptjs**: Biblioteca para criptografia em JavaScript.
 - **jsonwebtoken**: Implementação de JSON Web Tokens (JWT) para Node.js.
 - **mysql2**: Conector MySQL para Node.js que promove desempenho e escalabilidade.
-- **path**: Utilitário que fornece utilitários para trabalhar com caminhos de arquivo e diretório.
 - **sequelize**: ORM (Object-Relational Mapping) Node.js para suporte a MySQL, PostgreSQL, SQLite e outros.
 - **sequelize-cli**: Interface de linha de comando para Sequelize, facilitando a criação e gerenciamento de modelos e migrações.
+- **xlsx**: Biblioteca para ler e escrever arquivos do Excel em JavaScript.
+- **date-fns**: Biblioteca moderna para manipulação de datas em JavaScript.
+- **react-dom**: Pacote do ReactDOM para manipulação do DOM em aplicações React.
+- **react-router-dom**: Pacote React Router para roteamento em aplicações React.
+- **web-vitals**: Biblioteca para medir e rastrear métricas de desempenho de uma página da web.
+- **path**: Utilitário que fornece utilitários para trabalhar com caminhos de arquivo e diretório.
+- **eslist**: Ferramenta de análise de código estática para identificar padrões problemáticos e corrigir identação do código JavaScript.
 
 ## Passo a passo para rodar localmente
 
