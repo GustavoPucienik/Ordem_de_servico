@@ -169,10 +169,15 @@ id (integer, obrigatório): ID da ordem de serviço
 - Método: GET
 - Descrição: Filtra as ordens de serviço concluídas com base nos parâmetros fornecidos
 - Parâmetros da URL:
-filtroName: Nome do usuário requisitante
-filtroSetor: Setor do usuário requisitante
-filtroLinha: Linha de produção relacionada à ordem
-filtroDataInicio: Data de início do filtro (formato: YYYY-MM-DD)
+
+filtroName: Nome do usuário requisitante, 
+
+filtroSetor: Setor do usuário requisitante, 
+
+filtroLinha: Linha de produção relacionada à ordem, 
+
+filtroDataInicio: Data de início do filtro (formato: YYYY-MM-DD), 
+
 filtroDataFim: Data de fim do filtro (formato: YYYY-MM-DD)
 
 ### Criar Ordem de Serviço
