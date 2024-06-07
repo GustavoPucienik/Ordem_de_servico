@@ -61,44 +61,44 @@ Este sistema foi desenvolvido para simplificar o gerenciamento de ordens de serv
 ## Estrutura do projeto
 ordem-de-servico/
 
-├── public/ 
+├── public/ : Este é o diretório dos arquivos estáticos, como imagens ou fontes. Acessados publicamente pelo navegador.
 
-├── src/
+├── src/ : Este é o diretório principal do código-fonte.
 
-────└─ components/
+────└─ components/ : Aqui é onde fica armazenado os componentes reutilizáveis que compõem a interface do usuário do seu aplicativo.
 
-────└─ config/
+────└─ config/ : Arquivos de configuração, como para configurações de roteamento ou de ambiente.
 
-────└─ img/
+────└─ img/ : Onde as imagens utilizadas em seu aplicativo são ser armazenadas.
 
-────└─ App.js
+────└─ App.js : O ponto de entrada principal do seu aplicativo React. Componente raiz que encapsula todos os outros componentes.
 
-────└─ index.js
+────└─ index.js : Ponto de entrada para o navegador. Renderiza o componente principal do seu aplicativo (App.js) no DOM.
 
-└── .env
+└── .env : Este arquivo contem variáveis de ambiente, como chaves de API ou URLs de backend.
 
 
 Back-end/
 
-├── api/                #Código fonte da API
+├── api/               : Código fonte da API
 
-────└─ config/         #Configuração do banco de dados
+────└─ config/         : Configuração do banco de dados
 
-────└─ controllers/    #Função dos controles das rotas
+────└─ controllers/    : Função dos controles das rotas
 
-────└─ migrations/     #Arquivos de migração dos dados
+────└─ migrations/     : Arquivos de migração dos dados
 
-────└─ models/         #Modelos dos dados
+────└─ models/         : Modelos dos dados
 
-────└─ rotas/          #Definição das rotas da API
+────└─ rotas/          : Definição das rotas da API
 
-────└─ seeders/        #Arquivo para semear os dados
+────└─ seeders/        : Arquivo para semear os dados
 
-────└─ app.js
+────└─ app.js : Ponto de entrada da sua aplicação backend. Onde você configura e inicializa sua aplicação.
 
-├── .env
+├── .env : Variáveis de ambiente
 
-└── server.js
+└── server.js : Responsável por iniciar o servidor HTTP para sua aplicação.
 
 
 # Endpoints da API:
