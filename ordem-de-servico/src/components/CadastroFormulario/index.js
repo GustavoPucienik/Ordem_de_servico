@@ -40,7 +40,7 @@ const CadastroForm = () => {
       return alert(response.data.msg);
       }
       alert(`Usuario ${response.data.nome} cadastrado com sucesso!`);
-      window.location = "/login"; // Redireciona para a página de login após o cadastro bem-sucedido
+      window.location = "/ods/login"; // Redireciona para a página de login após o cadastro bem-sucedido
     } catch (error) {
       alert("Erro ao enviar dados:", error); // Exibe um alerta em caso de erro no envio dos dados
     }

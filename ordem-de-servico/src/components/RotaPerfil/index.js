@@ -4,6 +4,7 @@ import Header from '../Header';
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
 import verificaUsuario from "../../middlewares/checkaUsuario";
+import { useNavigate } from 'react-router-dom';
 
 const URLPegaDados = `${API_BASE_URL}/dadosusuario`;
 const URLAtualizarSenha = `${API_BASE_URL}/dadosusuario`;
@@ -16,6 +17,8 @@ const Dashboard = () => {
   const [senhaAtual, setSenhaAtual] = useState("");
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
+
+  const navigate = useNavigate();
 
   // useEffect para buscar os dados do usuário ao carregar o componente
   useEffect(() => {
@@ -36,7 +39,7 @@ const Dashboard = () => {
       } catch (error) {
         // Lidar com erros, redirecionando para a página de login em caso de falha
         alert("Erro ao buscar dados do usuário. Você será redirecionado!", error);
-        window.location = "/login";
+        window.location = "/ods/login";
       }
     };
     fetchData();
@@ -133,7 +136,7 @@ const Dashboard = () => {
           <div className={styles.buttonsPerfil}>
           {/* Botão para fechar ordens (disponível apenas para usuários do setor de Manutenção) */}
             {dados && (dados.setor === "Manutencao" || dados.setor === "Manutenção") ? (
-              <button className={styles.botaoAlterar} onClick={() => {window.location = "/ordens"}} type="button">Fechar ordens</button>
+            <button className={styles.botaoAlterar} onClick={() => navigate('/ods/ordens')} type="button">Fechar ordens</button>  
             ) : ""}
             {/* Botão para enviar o formulário de alteração de senha */}
             <button className={styles.botaoAlterar} type="submit">Alterar senha</button>

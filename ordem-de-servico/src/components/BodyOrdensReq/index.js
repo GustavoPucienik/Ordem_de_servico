@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { API_BASE_URL } from '../../config';
+import { useNavigate } from 'react-router-dom';
 import verificaUsuario from "../../middlewares/checkaUsuario.js";
 
 // URLs para acessar dados e operações relacionadas às ordens de serviço
@@ -33,6 +34,9 @@ const BodyOrdensReq = () => {
       setDados(response.data); // Define as ordens de serviço no estado
     });
   },[])
+
+  const navigate = useNavigate();
+  
   return (
     <div className={styles.bodyOrdensReq}>
       <div className={styles.ordensReq}>
@@ -47,7 +51,7 @@ const BodyOrdensReq = () => {
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
-              <button onClick={() => window.location = `/ordemrequisitada/${requisicao.id}`}>Resolver</button>
+              <button onClick={() => navigate(`/ods/ordemrequisitada/${requisicao.id}`)}>Resolver</button>
               <button onClick={() => {deletarOrdem(requisicao.id)}}>Excluir</button>
               </div>
             </li>

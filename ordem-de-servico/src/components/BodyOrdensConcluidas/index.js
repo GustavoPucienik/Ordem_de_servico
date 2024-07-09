@@ -5,12 +5,15 @@ import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManuten
 import { API_BASE_URL } from '../../config';
 import * as XLSX from "xlsx";
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 import verificaUsuario from "../../middlewares/checkaUsuario.js";
 
 // URLs para acessar dados e operações relacionadas às ordens de serviço
 const URLPegaRequisicoes = `${API_BASE_URL}/ordensconcluidas`;
 const URLDeletaReq = `${API_BASE_URL}/ordens/`;
 const URLFiltradas = `${API_BASE_URL}/filtrarordensconcluidas`;
+
+
 
 const BodyOrdensConcluidas = () => {
   const [dados, setDados] = useState([]);// Estado para armazenar todas as ordens de serviço
@@ -107,6 +110,8 @@ const BodyOrdensConcluidas = () => {
     XLSX.writeFile(wb, 'Relatório de manutenção AP WINNER.xlsx', { bookType: 'xlsx', type: 'bynary'});
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className={styles.bodyOrdensReq}>
       <div className={styles.ordensReq}>
@@ -151,7 +156,7 @@ const BodyOrdensConcluidas = () => {
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
-                <button onClick={() => window.location = `/editarordem/${requisicao.id}`}>Editar</button>
+                <button onClick={() => navigate(`/ods/editarordem/${requisicao.id}`)}>Editar</button>
                 <button onClick={() => { deletarOrdem(requisicao.id) }}>Excluir</button>
               </div>
             </li>
@@ -173,7 +178,7 @@ const BodyOrdensConcluidas = () => {
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
-                <button onClick={() => window.location = `/editarordem/${requisicao.id}`}>Editar</button>
+                <button onClick={() => navigate(`/ods/editarordem/${requisicao.id}`)}>Editar</button>
                 <button onClick={() => { deletarOrdem(requisicao.id) }}>Excluir</button>
               </div>
             </li>

@@ -7,7 +7,7 @@ import { API_BASE_URL } from '../../config'; // Importa a URL base da API a part
 const baseURL = `${API_BASE_URL}/login`; // URL para o endpoint de login
 
 const LoginForm = () => {
-  const history = useNavigate(); // Hook do react-router-dom para navegação
+  const navigate = useNavigate(); // Hook do react-router-dom para navegação
 
   const [formData, setFormData] = useState({ // setar os estados do email e senha que serão enviados para a api
     email: "",
@@ -20,21 +20,26 @@ const handleChange = async (e) => {
   setFormData({
     ...formData,
     [name]: value,
-  });}
+  });
+  console.log(`Campo ${name} alterado para ${value}`);}
+
 
 // Verifica se o usuário já está logado ao montar o componente
 useEffect(() => {
   const token = localStorage.getItem('token');
   if (token) {
-    history('/perfil'); // Redireciona para o perfil
+    console.log('Token encontrado, redirecionando para /perfil');
+    navigate('/ods/perfil'); // Redireciona para o perfil
   }
-}, [history]);
+}, [navigate]);
 
 // Função para lidar com o envio do formulário
 const handleSubmit = async (e) => {
   e.preventDefault();
+  console.log('Formulário enviado', formData);
   try {
     const response = await axios.post(baseURL, formData);// Envia os dados do formulário para a API de login
+    console.log('Resposta da API:', response.data);
     if (response.data.msg) {
       return alert(response.data.msg); // Exibe uma mensagem de erro, se houver, retornada pela API
     } else{
@@ -42,7 +47,7 @@ const handleSubmit = async (e) => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; // Define o token como padrão para as futuras requisições Axios
     localStorage.setItem('token', token) // Armazena o token no localStorage para sessão persistente
     alert(`Usuario com email ${formData.email} logado com sucesso!`); // Exibe uma mensagem de sucesso
-    history('/perfil');// Navega para a página de perfil
+    navigate('/ods/perfil');// Navega para a página de perfil
     }
   } catch (error) {
     console.error("Erro ao logar:", error); // Exibe um erro caso ocorra um problema na requisição

@@ -23,6 +23,8 @@ import RotaEditarOrdem from './components/RotaEditarOrdem';
 import RotaEditarLinhas from './components/RotaEditarLinhas';
 // Importa o componente RotaEditarLinhas para a rota "/editarlinhas"
 
+const ROTAFIXA = "/ods"
+
 function App() {
   return (
     <div className="App">
@@ -31,25 +33,25 @@ function App() {
       {/* Define o BrowserRouter para habilitar o uso de rotas */}
         <Routes>
         {/* Define as rotas da aplicação */}
-          <Route path="/" element={<Home />} />
+          <Route path={ROTAFIXA} element={<Home />} />
           {/* Rota para o componente Home */}
-          <Route path="/login" element={<Login />} />
+          <Route path={ROTAFIXA + "/login"} element={<Login />} />
           {/* Rota para o componente Login */}
-          <Route path="/cadastrar" element={<Cadastro />} />
+          <Route path={ROTAFIXA + "/cadastrar"} element={<Cadastro />} />
           {/* Rota para o componente Cadastro */}
-          <Route path="/perfil" element={<Perfil />} />
+          <Route path={ROTAFIXA + "/perfil"} element={<Perfil />} />
           {/* Rota para o componente Perfil */}
-          <Route path="/criarOrdem" element={<CriarOrdem/>}/>
+          <Route path={ROTAFIXA + "/criarOrdem"} element={<CriarOrdem/>}/>
           {/* Rota para o componente CriarOrdem */}
-          <Route path="/ordens" element={<RotaOrdens/>}/>
+          <Route path={ROTAFIXA + "/ordens"} element={<RotaOrdens/>}/>
           {/* Rota para o componente RotaOrdens */}
-          <Route path="/ordemrequisitada/:id" element={<OrdemRequisitada/>}/>
+          <Route path={ROTAFIXA + "/ordemrequisitada/:id"} element={<OrdemRequisitada/>}/>
           {/* Rota para o componente OrdemRequisitada com parâmetro id */}
-          <Route path="/ordensconcluidas" element={<RotaOrdensConcluidas/>}/>
+          <Route path={ROTAFIXA + "/ordensconcluidas"} element={<RotaOrdensConcluidas/>}/>
           {/* Rota para o componente RotaOrdensConcluidas */}
-          <Route path="/editarordem/:id" element={<RotaEditarOrdem/>}/>
+          <Route path={ROTAFIXA + "/editarordem/:id"} element={<RotaEditarOrdem/>}/>
           {/* Rota para o componente RotaEditarOrdem com parâmetro id */}
-          <Route path="/editarlinhas" element={<RotaEditarLinhas/>}/>
+          <Route path={ROTAFIXA + "/editarlinhas"} element={<RotaEditarLinhas/>}/>
           {/* Rota para o componente RotaEditarLinhas */}
         </Routes>
       </BrowserRouter>
