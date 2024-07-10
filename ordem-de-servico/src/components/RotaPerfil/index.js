@@ -39,7 +39,7 @@ const Dashboard = () => {
       } catch (error) {
         // Lidar com erros, redirecionando para a página de login em caso de falha
         alert("Erro ao buscar dados do usuário. Você será redirecionado!", error);
-        window.location = "/ods/login";
+        navigate("/ods/login");
       }
     };
     fetchData();

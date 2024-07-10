@@ -23,16 +23,6 @@ const handleChange = async (e) => {
   });
   console.log(`Campo ${name} alterado para ${value}`);}
 
-
-// Verifica se o usuário já está logado ao montar o componente
-useEffect(() => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    console.log('Token encontrado, redirecionando para /perfil');
-    navigate('/ods/perfil'); // Redireciona para o perfil
-  }
-}, [navigate]);
-
 // Função para lidar com o envio do formulário
 const handleSubmit = async (e) => {
   e.preventDefault();

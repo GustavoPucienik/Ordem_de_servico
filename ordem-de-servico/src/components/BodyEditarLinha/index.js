@@ -19,7 +19,7 @@ const EditarLinhas = () => {
   const token = localStorage.getItem('token');
   if (!token) {
     alert("Faça o login");
-    history('/login'); // Redireciona para o login se não houver token
+    history('/ods/login'); // Redireciona para o login se não houver token
   }
   }, [history]);
 
