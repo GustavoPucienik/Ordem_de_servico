@@ -6,7 +6,6 @@ import { API_BASE_URL } from '../../config';
 import * as XLSX from "xlsx";
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
-import verificaUsuario from "../../middlewares/checkaUsuario.js";
 
 // URLs para acessar dados e operações relacionadas às ordens de serviço
 const URLPegaRequisicoes = `${API_BASE_URL}/ordensconcluidas`;
@@ -42,7 +41,6 @@ const BodyOrdensConcluidas = () => {
 
   // Efeito para buscar as ordens de serviço ao montar o componente
   useEffect(() => {
-    verificacaoUsuarioManutencao()
     const pegaOrdens = () => {
       axios.get(URLPegaRequisicoes, {})
         .then((response) => {
@@ -189,4 +187,4 @@ const BodyOrdensConcluidas = () => {
   )
 }
 
-export default verificaUsuario(BodyOrdensConcluidas); //Verificar se o usuario tem token de autenticação
+export default verificacaoUsuarioManutencao(BodyOrdensConcluidas); //Verificar se o usuario tem token de autenticação

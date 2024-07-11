@@ -4,7 +4,6 @@ import axios from "axios";
 import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { useParams, useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../config';
-import verificaUsuario from '../../middlewares/checkaUsuario.js';
 
 
 
@@ -17,7 +16,6 @@ const BodyOrdemReq = () => {
   const [dados, setDados] = useState([]);// Estado para armazenar os dados da ordem de serviço
 
   useEffect(()=> {
-    verificacaoUsuarioManutencao(); // Verifica se o usuário tem permissão de manutenção
     axios.get(`${URLPegaRequisicao}${id}`, { //Pegando os dados da ordem
     })
     .then( function (response){
@@ -114,4 +112,4 @@ const BodyOrdemReq = () => {
   )
 }
 
-export default verificaUsuario(BodyOrdemReq); // Aplica middleware de verificação de usuário
+export default verificacaoUsuarioManutencao(BodyOrdemReq); // Aplica middleware de verificação de usuário

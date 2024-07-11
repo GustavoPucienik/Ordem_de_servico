@@ -4,7 +4,6 @@ import axios from "axios";
 import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { API_BASE_URL } from '../../config';
 import { useNavigate } from 'react-router-dom';
-import verificaUsuario from "../../middlewares/checkaUsuario.js";
 
 // URLs para acessar dados e operações relacionadas às ordens de serviço
 const URLPegaRequisicoes = `${API_BASE_URL}/ordens`;
@@ -27,7 +26,6 @@ const BodyOrdensReq = () => {
 
   // Efeito para buscar as ordens de serviço ao montar o componente
   useEffect(()=> {
-    verificacaoUsuarioManutencao(); // Verifica se o usuário tem permissão de manutenção
     axios.get(URLPegaRequisicoes, {
     })
     .then( function (response){
@@ -63,4 +61,4 @@ const BodyOrdensReq = () => {
 }
 
 //middleware que verifica se o usuario possui token de autenticação
-export default verificaUsuario(BodyOrdensReq);
+export default verificacaoUsuarioManutencao(BodyOrdensReq);

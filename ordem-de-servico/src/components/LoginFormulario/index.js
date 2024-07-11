@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate do react-router-dom para navegação
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from "./index.module.css"; // Importa os estilos específicos para este componente
 import axios from "axios"; // Importa a biblioteca Axios para realizar requisições HTTP
 import { API_BASE_URL } from '../../config'; // Importa a URL base da API a partir das configurações
@@ -20,13 +20,11 @@ const handleChange = async (e) => {
   setFormData({
     ...formData,
     [name]: value,
-  });
-  console.log(`Campo ${name} alterado para ${value}`);}
+  });}
 
 // Função para lidar com o envio do formulário
 const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log('Formulário enviado', formData);
   try {
     const response = await axios.post(baseURL, formData);// Envia os dados do formulário para a API de login
     console.log('Resposta da API:', response.data);
