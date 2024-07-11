@@ -61,14 +61,17 @@ const BodyOrdemReq = () => {
             </div>
             <form onSubmit={handleSubmit} className={styles.formOrdemReq}>
               <div className={styles.tipoServico}>
-                <h1 className={styles.titulos}>Relátorio técnico</h1>
+                <h1 className={styles.titulos}>Relatório técnico</h1>
                 <p className={styles.pTempo}>Que tipo de manutenção foi realizada:</p>
                 <select name="tipo_servico" id='servicoSelecionado' value={dados.tipo_servico}
                   onChange={(e) => setDados({ ...dados, tipo_servico: e.target.value })}>
                   <option value="">Escolha aqui</option>
                   <option value="C. Emergencial">C. Emergencial</option>
+                  <option value="C. Programada">C. Programada</option>
                   <option value="Predial">Predial</option>
                   <option value="Ajuste operacional">Ajuste operacional</option>
+                  <option value="Melhoria">Melhoria</option>
+                  <option value="Preventiva">Preventiva</option>
                 </select>
               </div>
               <div className={styles.tempo}>
