@@ -3,13 +3,14 @@ import styles from "./index.module.css";
 import axios from "axios";
 import { API_BASE_URL } from '../../config';
 import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
-import verificaUsuario from '../../middlewares/checkaUsuario.js';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 // URL para acessar os dados da ordem de serviço
 const URLPegaRequisicao = `${API_BASE_URL}/ordens/`;
 
 const BodyOrdemReq = () => {
+  const navigate = useNavigate();
   const { id } = useParams();// Obtém o ID da ordem de serviço da URL
   const [dados, setDados] = useState([]); // Estado para armazenar os dados da ordem de serviço
   const [formData, setFormData] = useState({
@@ -26,7 +27,6 @@ const BodyOrdemReq = () => {
   });  
 
   useEffect(()=> {
-    verificacaoUsuarioManutencao();// Verifica se o usuário tem permissão de manutenção
     axios.get(`${URLPegaRequisicao}${id}`, { // Obtém os dados da ordem de serviço com o ID específico
     })
     .then( function (response){
@@ -47,8 +47,9 @@ const BodyOrdemReq = () => {
     } catch (error) {
       alert("Erro ao atualizar a ordem de serviço:", error);
     }
-    window.location = "/ordensconcluidas"; // Redireciona após o envio do formulário
+    navigate("/ods/ordensconcluidas"); // Redireciona após o envio do formulário
   };
+
 
   return (
     <div className={styles.bodyOrdemReq}>
@@ -65,14 +66,17 @@ const BodyOrdemReq = () => {
             </div>
             <form onSubmit={handleSubmit} className={styles.formOrdemReq}>
               <div className={styles.tipoServico}>
-                <h1 className={styles.titulos}>Relátorio técnico</h1>
+                <h1 className={styles.titulos}>Relatório técnico</h1>
                 <p className={styles.pTempo}>Que tipo de manutenção foi realizada:</p>
                 <select name="tipo_servico" 
                   onChange={(e) => setFormData({ ...formData, tipo_servico: e.target.value })}>
                   <option value="">Escolha aqui</option>
                   <option value="C. Emergencial">C. Emergencial</option>
+                  <option value="C. Programada">C. Programada</option>
                   <option value="Predial">Predial</option>
                   <option value="Ajuste operacional">Ajuste operacional</option>
+                  <option value="Melhoria">Melhoria</option>
+                  <option value="Preventiva">Preventiva</option>
                 </select>
               </div>
               <div className={styles.tempo}>
@@ -116,4 +120,4 @@ const BodyOrdemReq = () => {
   )
 }
 
-export default verificaUsuario(BodyOrdemReq); // Aplica middleware de verificação de usuári
+export default verificacaoUsuarioManutencao(BodyOrdemReq); // Aplica middleware de verificação de usuári

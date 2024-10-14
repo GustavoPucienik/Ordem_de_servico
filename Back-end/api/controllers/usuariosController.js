@@ -43,7 +43,7 @@ class UsuarioController {
         nome: usuarioquelogou.nome,
         setor: usuarioquelogou.setor,
         email: usuarioquelogou.email,
-      }, jwtSecret, { expiresIn: "2h" });
+      }, jwtSecret);
       // Cria um token JWT com os dados do usuário e uma validade de 2 horas
 
       return res.status(200).json({ token });

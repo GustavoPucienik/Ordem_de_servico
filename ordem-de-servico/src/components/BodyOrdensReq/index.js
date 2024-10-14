@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManutencao.js";
 import { API_BASE_URL } from '../../config';
-import verificaUsuario from "../../middlewares/checkaUsuario.js";
+import { useNavigate } from 'react-router-dom';
 
 // URLs para acessar dados e operações relacionadas às ordens de serviço
 const URLPegaRequisicoes = `${API_BASE_URL}/ordens`;
@@ -26,13 +26,15 @@ const BodyOrdensReq = () => {
 
   // Efeito para buscar as ordens de serviço ao montar o componente
   useEffect(()=> {
-    verificacaoUsuarioManutencao(); // Verifica se o usuário tem permissão de manutenção
     axios.get(URLPegaRequisicoes, {
     })
     .then( function (response){
       setDados(response.data); // Define as ordens de serviço no estado
     });
   },[])
+
+  const navigate = useNavigate();
+  
   return (
     <div className={styles.bodyOrdensReq}>
       <div className={styles.ordensReq}>
@@ -47,7 +49,7 @@ const BodyOrdensReq = () => {
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
-              <button onClick={() => window.location = `/ordemrequisitada/${requisicao.id}`}>Resolver</button>
+              <button onClick={() => navigate(`/ods/ordemrequisitada/${requisicao.id}`)}>Resolver</button>
               <button onClick={() => {deletarOrdem(requisicao.id)}}>Excluir</button>
               </div>
             </li>
@@ -59,4 +61,4 @@ const BodyOrdensReq = () => {
 }
 
 //middleware que verifica se o usuario possui token de autenticação
-export default verificaUsuario(BodyOrdensReq);
+export default verificacaoUsuarioManutencao(BodyOrdensReq);

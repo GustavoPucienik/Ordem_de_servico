@@ -13,7 +13,7 @@ const verificaUsuario = (WrappedComponent) => {
       // Se não houver token, redireciona para a página de login
       if (!token) {
         alert("Faça o login, usuário não autenticado!");
-        navigate('/login');
+        navigate('/ods/login');
       }
     }, [navigate]); // O efeito depende de 'navigate'
 

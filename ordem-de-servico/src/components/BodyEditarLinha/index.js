@@ -4,7 +4,6 @@ import styles from './index.module.css';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config';
 import verificacaoUsuarioManutencao from '../../middlewares/checkaUsuarioManutencao';
-import verificaUsuario from '../../middlewares/checkaUsuario';
 
 // URL para acessar os dados da linha
 const URLlinha = `${API_BASE_URL}/linha`;
@@ -19,12 +18,9 @@ const EditarLinhas = () => {
   const token = localStorage.getItem('token');
   if (!token) {
     alert("Faça o login");
-    history('/login'); // Redireciona para o login se não houver token
+    history('/ods/login'); // Redireciona para o login se não houver token
   }
   }, [history]);
-
-  // Verifica se o usuário tem permissão de manutenção
-  verificacaoUsuarioManutencao();
 
   // Obtém as linhas existentes ao montar o componente
   useEffect(() => {
@@ -95,4 +91,4 @@ const EditarLinhas = () => {
 };
 
 // Exporta o componente com a verificação de usuário
-export default verificaUsuario(EditarLinhas);
+export default verificacaoUsuarioManutencao(EditarLinhas);

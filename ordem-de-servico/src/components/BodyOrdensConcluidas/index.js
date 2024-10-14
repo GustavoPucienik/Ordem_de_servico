@@ -5,12 +5,14 @@ import verificacaoUsuarioManutencao from "../../middlewares/checkaUsuarioManuten
 import { API_BASE_URL } from '../../config';
 import * as XLSX from "xlsx";
 import { format } from 'date-fns';
-import verificaUsuario from "../../middlewares/checkaUsuario.js";
+import { useNavigate } from 'react-router-dom';
 
 // URLs para acessar dados e operações relacionadas às ordens de serviço
 const URLPegaRequisicoes = `${API_BASE_URL}/ordensconcluidas`;
 const URLDeletaReq = `${API_BASE_URL}/ordens/`;
 const URLFiltradas = `${API_BASE_URL}/filtrarordensconcluidas`;
+
+
 
 const BodyOrdensConcluidas = () => {
   const [dados, setDados] = useState([]);// Estado para armazenar todas as ordens de serviço
@@ -39,7 +41,6 @@ const BodyOrdensConcluidas = () => {
 
   // Efeito para buscar as ordens de serviço ao montar o componente
   useEffect(() => {
-    verificacaoUsuarioManutencao()
     const pegaOrdens = () => {
       axios.get(URLPegaRequisicoes, {})
         .then((response) => {
@@ -107,6 +108,8 @@ const BodyOrdensConcluidas = () => {
     XLSX.writeFile(wb, 'Relatório de manutenção AP WINNER.xlsx', { bookType: 'xlsx', type: 'bynary'});
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className={styles.bodyOrdensReq}>
       <div className={styles.ordensReq}>
@@ -151,7 +154,7 @@ const BodyOrdensConcluidas = () => {
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
-                <button onClick={() => window.location = `/editarordem/${requisicao.id}`}>Editar</button>
+                <button onClick={() => navigate(`/ods/editarordem/${requisicao.id}`)}>Editar</button>
                 <button onClick={() => { deletarOrdem(requisicao.id) }}>Excluir</button>
               </div>
             </li>
@@ -173,7 +176,7 @@ const BodyOrdensConcluidas = () => {
               </div>
               <p className={styles.requisicaoOrdemDescricao}>{requisicao.descricao_req}</p>
               <div className={styles.botoesOrdensReq}>
-                <button onClick={() => window.location = `/editarordem/${requisicao.id}`}>Editar</button>
+                <button onClick={() => navigate(`/ods/editarordem/${requisicao.id}`)}>Editar</button>
                 <button onClick={() => { deletarOrdem(requisicao.id) }}>Excluir</button>
               </div>
             </li>
@@ -184,4 +187,4 @@ const BodyOrdensConcluidas = () => {
   )
 }
 
-export default verificaUsuario(BodyOrdensConcluidas); //Verificar se o usuario tem token de autenticação
+export default verificacaoUsuarioManutencao(BodyOrdensConcluidas); //Verificar se o usuario tem token de autenticação

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import styles from "../RotaCadastro/index.module.css";// Importa os estilos específicos para este componente
 import axios from "axios";// Importa a biblioteca Axios para realizar requisições HTTP
 import { API_BASE_URL } from '../../config';// Importa a URL base da API a partir das configurações
+import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate do react-router-dom para navegação
 
 const baseURL = `${API_BASE_URL}/cadastrar`; // URL para o endpoint de cadastro
 
 
 const CadastroForm = () => {
+  const history = useNavigate(); // Hook do react-router-dom para navegação
   const [formData, setFormData] = useState({// Define o estado inicial para os dados do formulário
     nome: "",
     setor: "",
@@ -40,7 +42,7 @@ const CadastroForm = () => {
       return alert(response.data.msg);
       }
       alert(`Usuario ${response.data.nome} cadastrado com sucesso!`);
-      window.location = "/login"; // Redireciona para a página de login após o cadastro bem-sucedido
+      history("/ods/login"); // Redireciona para a página de login após o cadastro bem-sucedido
     } catch (error) {
       alert("Erro ao enviar dados:", error); // Exibe um alerta em caso de erro no envio dos dados
     }

@@ -1,9 +1,18 @@
 import styles from "../Header/index.module.css";
+import { useNavigate } from 'react-router-dom';
 
-const ButtonVoltarOrdens = () => {
+const Button = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/ods/ordens');
+  };
+
   return (
-    <button className={styles.buttonHeader} onClick={() => window.location = "/ordens"}>Voltar</button>
-  )
+    <button className={styles.buttonHeader} onClick={handleClick}>
+      Voltar
+    </button>
+  );
 }
 
-export default ButtonVoltarOrdens
+export default Button;
