@@ -1,7 +1,7 @@
 # Sistema que desenvolvi para a empresa Ap Winner
 
 ## Sobre o projeto
-Este sistema foi desenvolvido para simplificar o gerenciamento de ordens de serviço para o setor de manutenção.
+Este sistema foi desenvolvido para simplificar o gerenciamento de ordens de serviço para o setor de manutenção no inicio de 2023.
 
 ## Tecnologias utilizadas
 - **node**: Ambiente de execução javascript.
